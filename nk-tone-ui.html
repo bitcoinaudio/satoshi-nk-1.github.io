@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+	<title>Tone.js Examples</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="icon" type="image/png" sizes="174x174" href="./favicon.png">
+
+    <link href="css/nk-tone-ui.css" rel="stylesheet" />
+
+	<script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-bundle.js"></script>
+    <script src="build/Tone.js"></script>
+    <script src="examples/js/tonejs-ui.js"></script>
+     <script src="js/recordtonejs.js"></script>
+</head>
+<body>
+	<audio controls></audio>
+    <div id="container" class="container">
+
+        <div id="header" class="header">	
+           
+        </div>
+        <div id="main" class="main"><tone-content>
+			<tone-play-toggle></tone-play-toggle>
+			<div id="tracks">
+				<tone-channel label="Bass" id="bass"></tone-channel>
+				<tone-channel label="Chords" id="chords"></tone-channel>
+				<tone-channel label="Drone" id="drone"></tone-channel>
+			</div>
+		</tone-content>
+
+            <div class="main">
+             <tone-content>
+			<tone-piano polyphonic></tone-piano>
+			<tone-synth polyphonic></tone-synth>
+		</tone-content>
+            <script type="text/javascript">
+		var synth = new Tone.PolySynth(8, Tone.Synth, {
+			"oscillator" : {
+				"partials" : [0, 2, 3, 4],
+			}
+		}).toMaster();
+
+		//bind the interface
+		document.querySelector("tone-piano").bind(synth);
+		document.querySelector("tone-synth").bind(synth);
+	</script>
+
+</div>
+        </div>
+        <div id="footer" class="footer">footer</div>
+
+
+
+    </div>
+
+
+   
+</body>
+</html>

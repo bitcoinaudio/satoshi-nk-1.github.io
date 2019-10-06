@@ -1,0 +1,616 @@
+﻿body {
+    background-color: #474747 !important;
+}
+
+
+/*navbar begin*/
+
+#navbar {
+    display: grid;
+    grid-auto-rows: 114px;
+    grid-template-columns: 110px 90px 90px 580px 90px 90px auto;
+    grid-template-areas: 'powerCol negButtons negButtons2 blockinfogroup posButtons posButtons2 hash-root';
+    background: url(../images/img-nk-1-pads/nk-navbar-bkg.svg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 100%;
+    width: 1200px;
+    height: 114px;
+    margin: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+#powerCol {
+    margin-top: 5px;
+    margin-left:10px;
+}
+#power {
+    background: url(../images/img-nk-1-pads/POWER.svg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    width: 125px;
+    height: 30px;
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: -10px;
+}
+#offLight {
+    background: url(../images/img-nk-1-pads/Off.svg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size:50%;
+    width: 125px;
+    height: 30px;
+}
+#powerToggle {
+    margin-right: 0;
+    margin-left: 35px;
+    margin-top: -15px;
+    margin-bottom: -15px;
+}
+#onLight {
+    background: url(../images/img-nk-1-pads/On.svg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    width: 125px;
+    height: 30px;
+}
+
+#navbar-minus {
+   
+}
+
+.navbutton {
+    
+    background-color: transparent;
+    width: 90px;
+    height: 35px;
+    border: none;
+    color: #ffd800;
+}
+
+
+#minus100kbtn {
+    background: url(../images/img-nk-1-pads/minus100kbtn.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#minus10kbtn {
+    background: url(../images/img-nk-1-pads/minus10kbtn.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#minus1kbtn {
+    background: url(../images/img-nk-1-pads/minus1kbtn.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#minus100btn {
+    background: url(../images/img-nk-1-pads/minus100btn.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#minus10btn {
+    background: url(../images/img-nk-1-pads/minus10btn.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#minus1btn {
+    background: url(../images/img-nk-1-pads/minus1btn.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.blockinfogroup {
+    font-size: 12px;
+    margin: auto;
+    background: #FDFF83;
+    width: 100%;
+    box-shadow: inset 0px 4px 4px rgb(0, 0, 0);
+    border-radius: 5px;
+    color: #000000;
+    height: 90px;
+    margin-top: 9px;
+    margin-left: 0px;
+    display: grid;
+    grid-template-columns: auto auto 150px;
+    grid-template-rows: 24px 24px 24px 24px;
+    grid-template-areas: 'blocksTB searchLabel searchTB' ' blockTB blockTB blockTB' ' clipTB clipTB clipTB' 'testTB testTB testTB';
+}
+
+.TB {
+    border: none;
+    width: auto;
+    height: auto;
+    text-align: center;
+
+}
+
+#blocksTB {
+    grid-area: blocksTB;
+    text-align: center;   
+    background: rgba(253, 255, 131, 0.00);
+}
+#searchLabel {
+    padding: 3px;
+    grid-area: searchLabel;
+    text-align: right;
+    display: block;
+    background: rgba(253, 255, 131, 0.00);
+}
+#searchTB {   
+    grid-area: searchTB;
+    text-align: left;
+    background: rgba(253, 255, 131, 0.00);
+}
+#blockTB {
+    grid-area: blockTB;
+    background: rgba(253, 255, 131, 0.00);
+}
+#clipTB {
+    grid-area: clipTB;
+    background: rgba(253, 255, 131, 0.00);
+}
+#consoleTB {
+    grid-area: testTB;
+    background: rgba(253, 255, 131, 0.00);
+}
+
+#blockinfo {
+    /*margin-left: 10px;*/
+    font-size: 12px;
+    width: 480px;
+    height: 45px;
+    background: #FDFF83;
+    box-shadow: inset 0px 4px 4px rgb(0, 0, 0);
+    border-radius: 5px;
+    color: #000000;
+}
+
+
+#plus100kbtn {
+    background: url(../images/img-nk-1-pads/plus100kbtn.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#plus10kbtn {
+    background: url(../images/img-nk-1-pads/plus10kbtn.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#plus1kbtn {
+    background: url(../images/img-nk-1-pads/plus1kbtn.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#plus100btn {
+    background: url(../images/img-nk-1-pads/plus100btn.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#plus10btn {
+    background: url(../images/img-nk-1-pads/plus10btn.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#plus1btn {
+    background: url(../images/img-nk-1-pads/plus1btn.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+#hash-root {
+    margin-right: 10px;
+}
+#hash {
+    background: url(../images/img-nk-1-pads/hashbutton.svg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size:75%;
+    width: 125px;
+    height: 30px;
+}
+
+#hrToggle {
+    margin-right: 0;
+    margin-left: 35px;
+    margin-top: -15px;
+    margin-bottom: -15px;
+}
+
+#root {
+    background: url(../images/img-nk-1-pads/rootbutton.svg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: 75%;
+    width: 125px;
+    height: 30px;
+}
+#nkplay {
+    display: grid;
+    grid-template-columns: 360px 450px auto;
+    grid-template-areas: 'left-panel colors-container pads-container';
+    background: url(../images/img-nk-1-pads/synth-base-panel.svg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 100%;
+    width: 1200px;
+    height: 450px;
+    margin: auto;
+    margin-left: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+#left-panel {
+    margin-left: 45px;
+    height:400px;
+}
+#knob-controls {
+    display: grid;
+    grid-template-columns: 64px 64px 64px 64px;
+    grid-template-areas: 'knob1 knob2 knob3 knob4';
+}
+#slider-controls {
+    display: grid;
+    grid-template-columns: 52px 52px 52px 52px 52px 52px;
+    grid-auto-rows: auto auto;
+    grid-template-areas: 'slider1 slider2 slider3 slider4 slider5 slider6' 'slider7 . . . . slider8';
+}
+#transporter {
+    display: grid;
+    grid-template-columns: 80px 80px 80px 80px;
+    grid-auto-rows: 30px 30px;
+    grid-template-areas: 'playtoneseq playallheights muteBTN record' 'prevslicebutton  stringindex stringindex clickthrubutton';
+}
+#notebuttons {
+    display: grid;
+    grid-template-columns: 80px 80px 80px 80px;
+    grid-template-areas: 'wholeswitch halfswitch quarterswitch eighthswitch';
+}
+#midiswitches {
+
+}
+#sliceinfo {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-auto-rows: 30px;
+    grid-template-areas: 'prevslicebutton  stringindex stringindex clickthrubutton';
+}
+#prevslicebutton {
+    grid-area: prevslicebutton;
+    background-image: url(../images/blocknav/backbutton.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 70px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+
+    #prevslicebutton:hover {
+    }
+#stringindex {
+    grid-area: stringindex;
+    background: #FDFF83;
+    box-shadow: inset 0px 4px 4px rgb(0, 0, 0);
+    border-radius: 5px;
+    color: #000000;
+}
+#clickthrubutton {
+    grid-area: clickthrubutton;
+    background-image: url(../images/blocknav/nextbutton.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 70px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+
+#wholeswitch {
+    background-image: url(../images/notes/wholeBtn.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 80px;
+    height: 25px;
+    border: none;
+    background-color: transparent;
+}
+
+    #wholeswitch:hover {
+        background-image: url(../images/notes/wholeBtn-hvr.svg);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        width: 80px;
+        height: 25px;
+        border: none;
+        background-color: transparent;
+    }
+
+#halfswitch {
+    background-image: url(../images/notes/halfBtn.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 80px;
+    height: 25px;
+    border: none;
+    background-color: transparent;
+}
+
+    #halfswitch:hover {
+        background-image: url(../images/notes/halfBtn-hvr.svg);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        width: 80px;
+        height: 25px;
+        border: none;
+        background-color: transparent;
+    }
+
+#quarterswitch {
+    background-image: url(../images/notes/quarterBtn.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 80px;
+    height: 25px;
+    border: none;
+    background-color: transparent;
+}
+
+    #quarterswitch:hover {
+        background-image: url(../images/notes/quarterBtn-hvr.svg);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        width: 80px;
+        height: 25px;
+        border: none;
+        background-color: transparent;
+    }
+
+#eighthswitch {
+    background-image: url(../images/notes/eighthBtn.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 80px;
+    height: 25px;
+    border: none;
+    background-color: transparent;
+}
+
+    #eighthswitch:hover {
+        background-image: url(../images/notes/eighthBtn-hvr.svg);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        width: 80px;
+        height: 25px;
+        border: none;
+        background-color: transparent;
+    }
+
+#lowercontrols {
+    display: grid;
+    grid-template-columns: auto auto auto ;
+    grid-template-areas: 'preset-group sound-group pad-group';
+}
+#colors-container {
+    margin-top: 5px;
+    margin-left: 25px;
+    height: auto;
+}
+#pads-container {
+    margin-left: -24px;
+    grid-area: pads-container;
+    padding: 55px;
+    width: 420px;
+    height: 400px;
+    display: grid;
+    grid-template-columns: 80px 80px 80px 80px;
+    grid-template-rows: 80px 80px 80px 80px;
+    grid-template-areas: 'pad13 pad14 pad15 pad16' 'pad9 pad10 pad11 pad12' 'pad5 pad6 pad7 pad8' 'pad1 pad2 pad3 pad4';
+}
+#sound-group {
+    grid-area: sound-group;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-areas: 'stringtype name preset effect slice';
+}
+#pad-group {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-areas: ' makecolorpads save makebeatpad';
+}
+
+#makecolorpads {
+    grid-area: makecolorpads;
+}
+#save {
+    grid-area: save;
+}
+#makebeatpad {
+    grid-area: makebeatpad;
+}
+.pad {
+    background-color: wheat;
+    height: 80px;
+    width: 80px;
+}
+
+
+/*navbar end*/
+/*Player Controls*/
+#playtoneseq {
+    background-image: url(../images/BAplayer/playbutton.svg) !important;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 60px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+
+#playallheights {
+    background-image: url(../images/BAplayer/playallbtn.svg) !important;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 60px;
+    height: 40px;
+    background-size: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+#muteBTN {
+    background-image: url(../images/BAplayer/pausebutton.svg) !important;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 60px;
+    height: 40px;
+    background-size: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+#record {
+    background-image: url(../images/BAplayer/recordbtn.svg) !important;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 60px;
+    height: 40px;
+    background-size: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+#cancel {
+    background-image: url(../images/BAplayer/stoprecordbtn.svg) !important;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 60px;
+    height: 40px;
+    background-size: 100%;
+    border: none;
+    background-color: transparent;
+}
+#av-controls {
+    background: url(../images/img-nk-1-pads/nk-navbar-bkg.svg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 100%;
+    width: 1200px;
+    height: 116px;
+    margin: auto;
+    margin-left: auto;
+    margin-bottom: 0px;
+}
+
+#lowercontrols {
+    margin-left: 45px;
+    display: grid;
+    grid-template-columns:  auto auto;
+    grid-template-areas: 'sound-group pad-group';
+}
+.lower {
+
+    margin-top: 10px;
+}
+
+.dropdown {
+    background: url(../images/synth-btn-bgn.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    background-color: transparent;
+    width: 120px;
+    height: 35px;
+    border: none;
+    color: #ffd800;
+    font-size: small !important;
+    display: block;
+    /*font-size: 16px;*/
+    font-family: sans-serif;
+    font-weight: 700;
+    line-height: 1.3;
+    padding: .6em 1.4em .5em .8em;
+    box-sizing: border-box;
+    margin: 0;
+    -moz-appearance: none;
+}
+.dropdown::-ms-expand {
+    display: none;
+}
+.dropdown:hover {
+
+
+}
+    .dropdown:focus {
+        color: #ffd800;
+        outline: none;
+    }
+    .dropdown option {
+        background-color: black;
+        font-size: small;
+    }
+.colorsbtn {
+    background: url(../images/synth-btn-bgn.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    background-color: transparent;
+    width: 120px;
+    height: 35px;
+    border: none;
+    color: #ffd800;
+    font-size: small !important;
+    display: block;
+    /*font-size: 16px;*/
+    font-family: sans-serif;
+    font-weight: 700;
+    line-height: 1.3;
+    padding: .6em 1.4em .5em .8em;
+    box-sizing: border-box;
+    margin: 0;
+    -moz-appearance: none;
+}
+
+
+CODE MIRROR
+*/
+.CodeMirror {
+    border: 2px solid #777;
+    height: auto;
+}
+
+.CodeMirror-focused {
+    border: 2px solid #22DBC0;
+}
+
+.cm-s-default .cm-property {
+    color: #3833ED !important;
+}
+
+.cm-s-default .cm-string {
+    color: #7F33ED;
+}
+
+.cm-s-default .cm-number {
+    color: #f5871f;
+}
+
+.Error {
+    border-color: red;
+}

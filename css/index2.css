@@ -1,0 +1,715 @@
+﻿.center {
+    margin: auto;
+    background-color: #474747
+}
+.synth-container {
+    background: url(../images/satoshi-synth-base-panel.svg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 100%;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-areas: 'play-container' 'audio-controls';
+    width: 1400px;
+    height: 700px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: auto;
+}
+.pads-container {
+    background: url(../images/satoshi-synth-base-panel.svg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas: 'wallpaper' 'right-pads-panel';
+    width: 1400px;
+    height: 700px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: auto;
+}
+#wallpaper {
+   
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 100%;
+    padding-top: 30px;
+    width: 600px;
+    height: 700px;
+    margin: auto;
+    margin-top: 110px;
+    margin-bottom: auto;
+}
+
+/* Container */
+.play-container {
+    /*margin: auto;*/
+    margin-left: 80px;
+    background-size: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 160px 900px 250px;
+    grid-template-areas: 'vol-panel blocknav right-panel' 'vol-panel slice-controls right-panel' 'vol-panel stringindex right-panel' 'vol-panel audio-container right-panel';
+    border: 5px;
+    text-align: center;
+}
+
+/* Container-Items */
+.vol-panel {
+    margin-top: 100px;
+    grid-area: vol-panel;
+    float: left;
+}
+
+.blocknav {
+    grid-area: blocknav;
+    margin-top:100px;
+    
+}
+.space {
+    grid-area: space;
+}
+
+.right-panel {
+    margin-top: 100px;
+    grid-area: right-panel;
+    /*float: right;
+    align-content: center;*/
+}
+.right-pad-panel {
+    margin-top: 100px;
+    
+    /*float: right;
+    align-content: center;*/
+}
+.audio-container {
+    display: grid;
+    grid-template-areas: 'audio' 'presetcode' 'footer';
+    grid-gap: 5px;
+    
+    width: 100%;
+}
+
+
+/* Slice-Controls*/
+.slice-controls {
+    display: grid;
+    justify-content: center;
+    grid-template-areas: 'slice slice slice';
+    grid-template-columns: auto auto auto;
+    grid-gap: 5px;
+    /*align-items: center;*/
+}
+
+/* Audio-Controls*/
+.audio-controls {
+    display: grid;
+    justify-content: center;
+    grid-template-areas: 'Names Preset effect delay' 'prevslice play rectone nextslice' 'muteBTN eqBTN metronome other';
+    grid-template-columns: 150px 150px 150px 150px;
+    grid-gap: 5px;
+    align-items: center;
+}
+
+.tone-transport {
+
+
+}
+/* Grid-Items */
+.audio-volume {
+    grid-area: audio-volume;
+}
+
+.audio {
+    grid-area: audio;
+}
+
+.blockinfo {
+    margin:auto;
+    grid-area: blockinfo;
+    background: #FDFF83;
+    width: 65%;
+    box-shadow: inset 0px 4px 4px rgb(0, 0, 0);
+    border-radius: 5px;
+    color: #000000;
+}
+
+.moreinfo {
+    grid-area: moreinfo;
+}
+
+.eqbase {
+    grid-area: eqbase;
+}
+.presetcode {
+    grid-area: presetcode;
+}
+    .grid-container > div {
+        /*background-color: #000000;
+        text-align: center;
+        padding: 2px 0;
+        font-size: 16px;*/
+    }
+#powerswitch {
+    background: url(../images/PowerSwitch.svg) no-repeat;
+    background-size: 250px 135px;
+    height:150px;
+    width: 100%;
+}
+
+#killtoggle {
+    height: 54px;
+    margin-top: 50px;
+    
+}
+/*Block Info*/
+#stringtype {
+    background: #FDFF83;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+#notes {
+    background: #FDFF83;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+
+#blockTB {
+    height: 20px;
+    width: 600px;
+    margin-left: 0px;
+    margin-top: 5px;
+    background: #FDFF83;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+#testTB {
+    height: 20px;
+    width: 500px;
+    margin-left: 0px;
+    margin-top: 5px;
+    background: #FDFF83;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+#clipTB {
+    height: 20px;
+    width: 500px;
+    margin-left: 0px;
+    margin-top: 5px;
+    background: #FDFF83;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+#blocksTB {
+    text-align: center;
+    /*width: auto;
+    height: auto;*/
+    background: #FDFF83;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+
+#searchTB {
+    /*text-align: center;
+    height: 20px;
+    width: auto;
+    margin-left: 0px;
+    margin-top: 10px;
+    background: #FDFF83;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;*/
+    text-align: center;
+    width: auto;
+    height: auto;
+    background: #FDFF83;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+
+/*Player Controls*/
+#playtoneseq {
+    background-image: url(../images/BAplayer/playbutton.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 80px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+#playallheights {
+    background-image: url(../images/BAplayer/playallbtn.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+#muteBTN {
+    background-image: url(../images/BAplayer/pausebutton.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+#record {
+    background-image: url(../images/BAplayer/recordbtn.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+#cancel {
+    background-image: url(../images/BAplayer/stoprecordbtn.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+
+
+
+#prevslicebutton {
+    background-image: url(../images/blocknav/backbutton.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+    #prevslicebutton:hover {
+        
+    }
+#clickthrubutton {
+    background-image: url(../images/blocknav/nextbutton.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+}
+
+
+#wholeswitch {
+    background-image: url(../images/notes/wholeBtn.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 160px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+}
+    #wholeswitch:hover {
+        background-image: url(../images/notes/wholeBtn-hvr.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 160px;
+        height: 50px;
+        border: none;
+        background-color: transparent;
+    }
+#halfswitch {
+    background-image: url(../images/notes/halfBtn.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 160px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+}
+    #halfswitch:hover {
+        background-image: url(../images/notes/halfBtn-hvr.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 160px;
+        height: 50px;
+        border: none;
+        background-color: transparent;
+    }
+#quarterswitch {
+    background-image: url(../images/notes/quarterBtn.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 160px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+}
+    #quarterswitch:hover {
+        background-image: url(../images/notes/quarterBtn-hvr.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 160px;
+        height: 50px;
+        border: none;
+        background-color: transparent;
+    }
+#eighthswitch {
+    background-image: url(../images/notes/eighthBtn-hvr.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 160px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+}
+    #eighthswitch:hover {
+        background-image: url(../images/notes/eighthBtn-hvr.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 160px;
+        height: 50px;
+        border: none;
+        background-color: transparent;
+    }
+#wholeSlice {
+    background-image: url(../images/notes/wholeBtn.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 160px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+}
+    #wholeSlice:hover {
+        background-image: url(../images/notes/wholeBtn-hvr.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 160px;
+        height: 50px;
+        border: none;
+        background-color: transparent;
+    }
+#halfSlice {
+    background-image: url(../images/notes/halfBtn.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 160px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+}
+    #halfSlice:hover {
+        background-image: url(../images/notes/halfBtn-hvr.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 160px;
+        height: 50px;
+        border: none;
+        background-color: transparent;
+    }
+#quarterSlice {
+    background-image: url(../images/notes/quarterBtn.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 160px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+}
+    #quarterSlice:hover {
+        background-image: url(../images/notes/quarterBtn-hvr.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 160px;
+        height: 50px;
+        border: none;
+        background-color: transparent;
+    }
+#eighthSlice {
+    background-image: url(../images/notes/eighthBtn.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 160px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+}
+    #eighthSlice:hover {
+        background-image: url(../images/notes/eighthBtn-hvr.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 160px;
+        height: 50px;
+        border: none;
+        background-color: transparent;
+    }
+/*Metronome Buttons*/
+#bd {
+    background-image: url(../images/MetronomeImages/bd.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+}
+    #bd:hover {
+        background-image: url(../images/MetronomeImages/bd-hvr.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 80px;
+        height: 50px;
+        border: none;
+        background-color: transparent;
+    }
+#ClsdHH {
+    background-image: url(../images/MetronomeImages/ClsdHH.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+}
+    #ClsdHH:hover {
+        background-image: url(../images/MetronomeImages/ClsdHH-hrv.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 80px;
+        height: 50px;
+        border: none;
+        background-color: transparent;
+    }
+#OpenClsd {
+    background-image: url(../images/MetronomeImages/OpenClsd.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+}
+    #OpenClsd:hover {
+        background-image: url(../images/MetronomeImages/OpenClsd-hvr.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 80px;
+        height: 50px;
+        border: none;
+        background-color: transparent;
+    }
+#OpenHH {
+    background-image: url(../images/MetronomeImages/OpenHH.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+}
+    #OpenHH:hover {
+        background-image: url(../images/MetronomeImages/OpenHH-hvr.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 80px;
+        height: 50px;
+        border: none;
+        background-color: transparent;
+    }
+#RimShot {
+    background-image: url(../images/MetronomeImages/RimShot.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+}
+    #RimShot:hover {
+        background-image: url(../images/MetronomeImages/RimShot-hvr.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 80px;
+        height: 50px;
+        border: none;
+        background-color: transparent;
+    }
+#RimShot_2 {
+    background-image: url(../images/MetronomeImages/RimShot_2.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+}
+    #RimShot_2:hover {
+        background-image: url(../images/MetronomeImages/RimShot_2-hvr.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 80px;
+        height: 50px;
+        border: none;
+        background-color: transparent;
+    }
+
+#minus100kbtn {
+    background-image: url(../images/blocknav/minus100Kbtn.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: transparent;
+    width: 70px;
+    height: 30px;
+    border: none;
+}
+#minus10kbtn {
+    background: url(../images/blocknav/minus10Kbtn.svg) no-repeat top left;
+    background-size: contain;
+    width: 70px;
+    height: 30px;
+    border: none;
+}
+#minus1kbtn {
+    background: url(../images/blocknav/minus1Kbtn.svg) no-repeat top left;
+    background-size: contain;
+    width: 70px;
+    height: 30px;
+    border: none;
+}
+#minus100btn {
+    background: url(../images/blocknav/minus100btn.svg) no-repeat top left;
+    background-size: contain;
+    width: 70px;
+    height: 30px;
+    border: none;
+}
+#minus10btn {
+    background: url(../images/blocknav/minus10btn.svg) no-repeat top left;
+    background-size: contain;
+    display: inline-block;
+    width: 70px;
+    height: 30px;
+    border: none;
+}
+#prevbtn {
+    background: url(../images/blocknav/prevbtn.svg) no-repeat top left;
+    background-size: contain;
+    display: inline-block;
+    width: 70px;
+    height: 30px;
+    border: none;
+}
+#plus100kbtn {
+    background: url(../images/blocknav/plus100Kbtn.svg) no-repeat top left;
+    background-size: contain;
+    display: inline-block;
+    width: 70px;
+    height: 30px;
+    border: none;
+}
+#plus10kbtn {
+    background: url(../images/blocknav/plus10Kbtn.svg) no-repeat top left;
+    background-size: contain;
+    display: inline-block;
+    width: 70px;
+    height: 30px;
+    border: none;
+}
+#plus1kbtn {
+    background: url(../images/blocknav/plus1Kbtn.svg) no-repeat top left;
+    background-size: contain;
+    display: inline-block;
+    width: 70px;
+    height: 30px;
+    border: none;
+}
+#plus100btn {
+    background: url(../images/blocknav/plus100btn.svg) no-repeat top left;
+    background-size: contain;
+    display: inline-block;
+    width: 70px;
+    height: 30px;
+    border: none;
+}
+#plus10btn {
+    background: url(../images/blocknav/plus10btn.svg) no-repeat top left;
+    background-size: contain;
+    display: inline-block;
+    width: 70px;
+    height: 30px;
+    border: none;
+}
+#nextbtn {
+    background: url(../images/blocknav/nextbtn.svg) no-repeat top left;
+    background-size: contain;
+    display: inline-block;
+    width: 70px;
+    height: 30px;
+    border: none;
+}
+select {
+    height: 20px;
+    width: 125px;
+    margin-left: 5px;
+    margin-top: 5px;
+    background: #FDFF83;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+
+input[type=text] {
+    background: #FDFF83;
+    /*border-radius: 4px;
+    text-align: center;
+    width: 100px;
+    height: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 0.11em;
+    color: #000000;*/
+}
+
+button:hover {
+    /*background: url(../images/button-bkg-hover.svg) no-repeat top left;*/
+    /*background-image: url('../images/button-bkg-hover.svg');*/
+    /*background-size: contain;*/
+    /*display: inline-block;*/
+    /*width: 70px;*/
+    /*height: 50px;*/
+    /*border: none;*/
+}
+/*
+	CODE MIRROR
+*/
+.CodeMirror {
+    border: 2px solid #777;
+    height: auto;
+}
+
+.CodeMirror-focused {
+    border: 2px solid #22DBC0;
+}
+
+.cm-s-default .cm-property {
+    color: #3833ED !important;
+}
+
+.cm-s-default .cm-string {
+    color: #7F33ED;
+}
+
+.cm-s-default .cm-number {
+    color: #f5871f;
+}
+
+.Error {
+    border-color: red;
+}

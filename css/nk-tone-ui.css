@@ -1,0 +1,28 @@
+﻿body {
+    align-content:center;
+
+}
+.header {
+    grid-area: header;
+    background-color: violet;
+}
+
+.main {
+    grid-area: main;
+    background-color: #ffffff;
+}
+
+.footer {
+    grid-area: footer;
+    background-color:maroon;
+}
+
+
+.container {
+    justify-items: center;
+    align-items:center;
+    display: grid;
+    grid-template-columns: 150px 150px 150px ;
+    grid-template-rows: auto;
+    grid-template-areas: "header header header " "main main main " "footer footer footer ";
+}

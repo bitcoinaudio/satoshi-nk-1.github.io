@@ -1,0 +1,507 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="css/nk-1-pads.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="style/codemirror.css">
+
+    <script>WebAudioControlsOptions = { useMidi: 1 }</script>
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-bundle.js"></script>
+    <script src="../build/Tone.js"></script>
+    <script src="examples/js/BAtonejs-ui.js"></script>
+
+    <script src="js/webaudio-controls.js"></script>
+    <script type="text/javascript" src="js/codemirror.js"></script>
+    <script type="text/javascript" src="js/javascript.js"></script>
+    <script type="text/javascript" src="js/audiokeys.js"></script>
+    <script type="text/javascript" src="js/PresetList.js"></script>
+    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+    <!--<script type="text/javascript" src="scripts/require.js"></script>-->
+
+
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+
+    <title>NK-1-Pads</title>
+</head>
+<body id="page-top" class="center" onload="loadplayground()">
+    <div class="container-fluid">
+
+        <div id="navbar" class="row no-gutters">
+            <div id="powerCol">
+                <div id="power"></div>
+                <div id="offLight"></div>
+                <div id="powerToggle">
+                    <webaudio-switch id="killtoggle" src="../knobs/switch_toggle.png" width="54" height="54" type="toggle" midicc="0.16" midilearn="1"></webaudio-switch>
+                </div>
+                <div id="onLight"></div>
+            </div>
+
+            <div id="negButtons">
+                <button id="minus1kbtn" type="button" class="navbutton" onclick="heightminus1k()"></button>
+                <button id="minus10kbtn" type="button" class="navbutton" onclick="heightminus10k()"></button>
+                <button id="minus100kbtn" type="button" class="navbutton" onclick="heightminus100k()"></button>
+            </div>
+            <div id="negButtons2">
+                <button id="minus1btn" type="button" class="navbutton" onclick="prevheight()"></button>
+                <button id="minus10btn" type="button" class="navbutton" onclick="heightminus10()"></button>
+                <button id="minus100btn" type="button" class="navbutton" onclick="heightminus100()"></button>
+            </div>
+
+            <div id="blockinfogroup" class="blockinfogroup" style="font-family: 'Orbitron', sans-serif;">
+                <input id="blocksTB" class="TB" type="text" name="blocksTB" value="BLOCKS">
+                <label id="searchLabel" for="searchTB">Now Playing: </label>
+                <input type="text" id="searchTB" class="TB" onchange="getstring()" placeholder="ENTER BLOCK HEIGHT">
+                <!-- <div id="blockinfo" class="blockinfo">
+                    <h1>blockinfo goes hear</h1>
+                </div>-->
+                <input type="text" id="blockTB" class="TB" name="blockTB" onselect="playselected()" />
+
+                <input type="text" id="clipTB" class="TB" name="clipTB" value="" onselect="playseq()" />
+
+                <input type="text" id="consoleTB" class="TB" name="consoleTB" value="" />
+
+
+            </div>
+
+            <div id="posButtons">
+                <button id="plus1btn" type="button" class="navbutton" onclick="nextheight()"></button>
+                <button id="plus10btn" type="button" class="navbutton" onclick="heightplus10()"></button>
+                <button id="plus100btn" type="button" class="navbutton" onclick="heightplus100()"></button>
+            </div>
+            <div id="posButtons2">
+                <button id="plus1kbtn" type="button" class=" navbutton" onclick="heightplus1k()"></button>
+                <button id="plus10kbtn" type="button" class=" navbutton" onclick="heightplus10k()"></button>
+                <button id="plus100kbtn" type="button" class=" navbutton" onclick="heightplus100k()"></button>
+            </div>
+            <div id="hash-root" style="margin-top: 20px">
+                <div id="hash"></div>
+                <div id="hrToggle">
+                    <webaudio-switch id="datatoggle" src="knobs/switch_toggle.png" width="54" height="54" type="toggle" midicc="0.16" midilearn="1"></webaudio-switch>
+                </div>
+                <div id="root"></div>
+            </div>
+        </div>
+        <!--     navbar end-->
+        <!--     nkplay begin-->
+        <div id="nkplay">
+            <div id="left-panel">
+                <div id="knob-controls" class="knob-controls" style="position: relative; top: 10px">
+                    <span>
+                        <webaudio-knob id="knob1" src="images/LittlePhatty.png" value="32" max="64" min="0" step="2" diameter="32" sprites="100" tooltip="Speed" midicc="0.22" midilearn="1"></webaudio-knob>
+                        <br />
+                        <webaudio-param link="knob1"></webaudio-param>
+                    </span>
+
+
+                    <span>
+                        <webaudio-knob id="knob2" src="images/LittlePhatty.png" value="32" max="64" min="0" step="2" diameter="32" sprites="100" tooltip="Speed" midicc="0.23" midilearn="1"></webaudio-knob>
+                        <br />
+                        <webaudio-param link="knob2"></webaudio-param>
+                    </span>
+
+
+                    <span>
+                        <webaudio-knob id="knob3" src="images/LittlePhatty.png" value="32" max="64" min="0" step="2" diameter="32" sprites="100" tooltip="Speed" midicc="0.24" midilearn="1"></webaudio-knob>
+                        <br />
+                        <webaudio-param link="knob3"></webaudio-param>
+                    </span>
+
+
+                    <span>
+                        <webaudio-knob id="knob4" src="images/LittlePhatty.png" value="32" max="64" min="0" step="2" diameter="32" sprites="100" tooltip="Speed" midicc="0.25" midilearn="1"></webaudio-knob>
+                        <br />
+                        <webaudio-param link="knob4"></webaudio-param>
+                    </span>
+                </div>
+                <br />
+                <div id="slider-controls" class="slider-controls">
+                    <span>
+                        <webaudio-slider id="slider0" src="images/vsliderbody.png" knobsrc="images/slice-slider-knob.svg" direction="vert" value="0" min="-40" max="40" step=".5" tooltip="volume" midicc="0.12" midilearn="1"></webaudio-slider>
+                        <br />
+                        <webaudio-param link="slider0"></webaudio-param>
+                    </span>
+
+                    <span>
+                        <webaudio-slider id="slider1" src="images/vsliderbody.png" knobsrc="images/slice-slider-knob.svg" direction="vert" value="0" min="-80" max="6" midicc="0.13" midilearn="1"></webaudio-slider>
+                        <br />
+                        <webaudio-param link="slider1"></webaudio-param>
+                    </span>
+
+                    <span>
+                        <webaudio-slider id="slider2" src="images/vsliderbody.png" knobsrc="images/slice-slider-knob.svg" direction="vert" value="0" min="-80" max="6" midicc="0.14" midilearn="1"></webaudio-slider>
+                        <br />
+                        <webaudio-param link="slider2"></webaudio-param>
+                    </span>
+
+                    <span>
+                        <webaudio-slider id="slider3" src="images/vsliderbody.png" knobsrc="images/slice-slider-knob.svg" direction="vert" value="0" min="-80" max="6" midicc="0.15" midilearn="1"></webaudio-slider>
+                        <br />
+                        <webaudio-param link="slider3"></webaudio-param>
+                    </span>
+                    <span>
+                        <webaudio-slider id="slider4" src="images/vsliderbody.png" knobsrc="images/slice-slider-knob.svg" direction="vert" value="0" min="-80" max="6" midicc="0.16" midilearn="1"></webaudio-slider>
+                        <br />
+                        <webaudio-param link="slider4"></webaudio-param>
+                    </span>
+                    <span>
+                        <webaudio-slider id="slider5" src="images/vsliderbody.png" knobsrc="images/slice-slider-knob.svg" direction="vert" value="0" min="-80" max="6" midicc="0.17" midilearn="1"></webaudio-slider>
+                        <br />
+                        <webaudio-param link="slider5"></webaudio-param>
+                    </span>
+
+                    <span>
+                        <webaudio-slider id="pan" src="images/slice-slider.svg" knobsrc="images/slice-slider-knob.svg" direction="horz" value="0" min="-1" max="1" step=".1" units="%" tooltip="Pan" midicc="0.24" midilearn="1"><br /></webaudio-slider>
+
+                        <!--                        <webaudio-param link="slider5"></webaudio-param>-->
+                    </span>
+                    <br />
+                    <span>
+                        <webaudio-slider id="clipSlider" style="position: relative" src="images/slice-slider.svg" knobsrc="images/slice-slider-knob.svg" direction="horz" value="0" min="0" max="64" step="1" units="%" tooltip="Slice" midicc="0.25" midilearn="1"></webaudio-slider>
+
+                        <!--                        <webaudio-param link="slider6"></webaudio-param>-->
+                    </span>
+
+                </div>
+                <div id="transporter">
+                    <button id="playtoneseq" class="" onclick="playseq()"></button>
+                    <button id="playallheights" class="" onclick="playallheights()"></button>
+                    <button id="muteBTN" class="" onclick="muteaudio()"></button>
+                    <button id="record" class=""></button>
+                    <button id="cancel" class="" hidden="true"></button>
+                    <br />
+
+                </div>
+                <div id="sliceinfo">
+                    <input id="prevslicebutton" class="" type="button" onclick="clickbackseq()" />
+                    <input id="stringindex" type="text" class="TB text-center" name="stringindex" />
+                    <input id="clickthrubutton" class="" type="button" onclick="clickthruseq()" />
+                </div>
+                <div id="notebuttons" class="notebuttons">
+                    <button id="wholeswitch" value="wholeswitch" onclick="wholeString()"></button>
+                    <button id="halfswitch" value="halfswitch" onclick="halfString()"></button>
+                    <button id="quarterswitch" value="quarterswitch" onclick="quarterString()"></button>
+                    <button id="eighthswitch" value="eighthswitch" onclick="eighthString()"></button>
+                    <div id="midiswitches" class="midiswitches">
+                        <webaudio-switch id="wholeswitchmidi" src="../images/notes/wholeBtn.svg" width="80" height="25" type="kick" midicc="2.81" midilearn="1"></webaudio-switch>
+                        <!--              <webaudio-switch id="halfswitchmidi" src="../images/notes/halfBtn.svg"  width="80" height="25";  type="kick"  midicc="2.83" midilearn="1" ></webaudio-switch>
+                    <webaudio-switch id="quarterswitchmidi" src="../images/notes/quarterBtn.svg"  width="80" height="25";  type="kick"  midicc="2.84" midilearn="1" ></webaudio-switch>
+                    <webaudio-switch id="eighthswitchmidi" src="../images/notes/eighthBtn.svg"  width="80" height="25";  type="kick"  midicc="2.86" midilearn="1" ></webaudio-switch>-->
+                    </div>
+                </div>
+                <br />
+            </div>
+            <div id="colorpads" style="height: 440px; width: 400px; margin:auto;"></div>
+            <div id="pads-container">
+            </div>
+
+
+        </div>
+        <!--     nkplay end-->
+
+
+
+        <!--     audio controls begin-->
+        <div id="av-controls">
+            <div id="lowercontrols" class="lowercontrols">
+                <div id="sound-group" class="lower">
+                    <select name="stringtype" id="stringtype" class="dropdown" onchange="getstring()">
+                        <option value="root">Root</option>
+                        <option value="hash">Hash</option>
+                    </select>
+                    <div id="Names" class="Names">
+                        <select class="dropdown"></select>
+                    </div>
+                    <div id="Preset" class="Preset">
+                        <select class="dropdown"></select>
+                    </div>
+                    <div class="effect">
+                        <select name="effect" id="effect" class="dropdown" onchange="changeeffect()">
+                            <option value="">Effect</option>
+                            <option value="reverb">Reverb</option>
+                            <option value="chorus">Chorus</option>
+                            <option value="pingpongdelay">PingPongDelay </option>
+                            <option value="tremolo">Tremolo</option>
+                            <option value="vibrato">Vibrato</option>
+                            <option value="phaser">Phaser</option>
+                        </select>
+                    </div>
+                    <select name="slice" id="slice" class="dropdown" onchange="selectslice()">
+                        <option value="raw">Slice</option>
+                        <option value="slice">Other Slice</option>
+                        <option value="next">Next slice</option>
+                        <option value="whole">Whole slice</option>
+                        <option value="half">Half slice</option>
+                    </select>
+
+                    <div class="time">
+                        <select name="time" id="time" class="dropdown">
+                            <option value="90">90 default</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                            <option value="60">60</option>
+                            <option value="70">70</option>
+                            <option value="80">80</option>
+                            <option value="90">90</option>
+                            <option value="100">100</option>
+                            <option value="110">110</option>
+                            <option value="120">120</option>
+                            <option value="130">130</option>
+                            <option value="140">140</option>
+                            <option value="150">150</option>
+                            <option value="160">160</option>
+                            <option value="170">170</option>
+                            <option value="180">180</option>
+                            <option value="190">190</option>
+                            <option value="200">200</option>
+                            <option value="250">250</option>
+                            <option value="300">300</option>
+                            <option value="350">350</option>
+                            <option value="400">400</option>
+                            <option value="450">450</option>
+                            <option value="500">500</option>
+                            <option value="550">550</option>
+                            <option value="600">600</option>
+                            <option value="650">650</option>
+                            <option value="700">700</option>
+                            <option value="750">750</option>
+                            <option value="800">800</option>
+                            <option value="850">850</option>
+                            <option value="900">900</option>
+                            <option value="950">950</option>
+                            <option value="1000">1000</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <div id="pad-group" class="lower">
+                    <button type="button" id="makecolorpads" class="colorsbtn" onclick="makecolorpads()">Color Pads</button>
+                    <button type="button" id="save" class="colorsbtn" onclick="saveWallpaper()" data-toggle="modal" data-target="#wallpaperModal">SAVE</button>
+                    <button type="button" id="makebeatpad" class="colorsbtn" onclick="makemidibeatpad()">Beat Pads</button>
+                    <button type="button" class="colorsbtn" data-toggle="modal" data-target="#babcModal" onclick="makecolorpadsModal()">BABC Modal</button>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- The Modal -->
+        <div class="modal" id="babcModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">BABC Modal</h4>               
+
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <input type="text" id="blockTBModal"  name="blockTB"  />
+
+                    <!-- Modal body -->
+                    <div class="modal-body">                        
+                        <span>
+                            <audio controls src=""></audio>
+                        </span>
+
+                        <div id="colorpadsModal" style="height: 430px; width: 400px;"></div>
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button id="savewallpaper">Save Wallpaper</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--     audio controls end-->
+        <br />
+        <span>
+            <button class="btn colorsbtn" data-toggle="collapse" data-target="#toneseq">Sequencer</button>
+            <button class="btn colorsbtn" data-toggle="collapse" data-target="#presetcode">Synth Settings</button>
+        </span>
+        <div id="toneseq" class="collapse">
+            <tone-content>
+			 <tone-transport></tone-transport>
+			<tone-step-sequencer></tone-step-sequencer>
+			</tone-content>
+        </div>
+        <!--presetcode Grid-Item-->
+        <div id="presetcode" class="presetcode ">
+            <div id="JSON">
+                <button id="update" class=" colorsbtn  btn-default btn-sm">Update</button>
+            </div>
+            <div id="ErrorText"></div>
+        </div>
+        <hr />
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Audio input</label>
+                <div class="col-sm-3">
+                    <select id="audio-in-select" class="form-control"></select>
+                </div>
+                <div class="col-sm-3">
+                    <input id="audio-in-level" type="range" min="0" max="100" value="0" class="hidden">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <input id="echo-cancellation" type="checkbox">
+                    Enable echo cancellation
+                </div>
+                <div class="col-sm-6 text-warning"><strong>Experimental:</strong> cancellation on/off may work on Chrome only.</div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Test tone</label>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <input id="record-level" type="range" min="0" max="100" value="0">
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Recording time limit</label>
+                <div class="col-sm-3">
+                    <input id="time-limit" type="range" min="1" max="10" value="3">
+                </div>
+                <div id="time-limit-text" class="col-sm-6">3 minutes</div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Encoding</label>
+                <div class="col-sm-3">
+                    <input type="radio" name="encoding" encoding="wav" checked>
+                    .wav &nbsp;
+                    <input type="radio" name="encoding" encoding="ogg">
+                    .ogg &nbsp;
+                    <input type="radio" name="encoding" encoding="mp3">
+                    .mp3
+                </div>
+                <label id="encoding-option-label" class="col-sm-2 control-label"></label>
+                <div class="col-sm-2">
+                    <input id="encoding-option" type="range" min="0" max="11" value="6" class="hidden">
+                </div>
+                <div id="encoding-option-text" class="col-sm-2"></div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Encoding process</label>
+                <div class="col-sm-9">
+                    <input type="radio" name="encoding-process" mode="background" checked>
+                    Encode on recording background
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <input type="radio" name="encoding-process" mode="separate">
+                    Encode after recording (safer)
+                </div>
+                <label id="report-interval-label" class="col-sm-2 control-label hidden">Reports every</label>
+                <div class="col-sm-2">
+                    <input id="report-interval" type="range" min="1" max="5" value="1" class="hidden">
+                </div>
+                <div id="report-interval-text" class="col-sm-2 hidden">1 second</div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Recording buffer size</label>
+                <div class="col-sm-2">
+                    <input id="buffer-size" type="range" min="0" max="6">
+                </div>
+                <div id="buffer-size-text" class="col-sm-7"></div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-9 text-warning"><strong>Notice: </strong>recording becomes unstable if buffer size is below browser default.</div>
+            </div>
+            <br>
+            <div class="form-group">
+                <div class="col-sm-3 control-label"><span id="recording" class="text-danger hidden"><strong>RECORDING</strong></span>&nbsp; <span id="time-display">00:00</span></div>
+                <div class="col-sm-3">
+                </div>
+                <div class="col-sm-6"><span id="date-time" class="text-info"></span></div>
+            </div>
+        </div>
+        <hr>
+        <h3>Recordings</h3>
+        <div id="recording-list"></div>
+        <div id="modal-loading" class="modal fade">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal-progress" class="modal fade">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="progress">
+                            <div style="width: 0%;" class="progress-bar"></div>
+                        </div>
+                        <div class="text-center">0%</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal-error" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" data-dismiss="modal" class="close">&times;</button>
+                        <h4 class="modal-title">Error</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-warning"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-primary">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <script src="BAjs/playground-midi.js"></script>
+    <!--    <script src="BAjs/playground-pads.js"></script>-->
+    <script src="js/webaudio-controls.js"></script>
+    <script src="js/WebAudioRecorder.js"></script>
+    <script src="BAjs/listenBA.js"></script>
+    <script src="BAjs/playgroundrecorder.js"></script>
+    <script src="BAjs/BASequencer.js"></script>
+    <script src="BAjs/colorswatch.js"></script>
+    <script src="BAjs/playpads.js"></script>
+    <script src="js/html2canvas.js"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

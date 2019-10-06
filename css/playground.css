@@ -1,0 +1,250 @@
+﻿/*body {
+    font-family: source-sans-pro;
+    background-color: #000000;
+    margin-right: 0px;
+    margin-bottom: 0px;    
+    font-style: normal;
+    font-weight: 200;
+    width: 1000px;
+    left: auto;
+    right: auto;
+   
+}*/
+
+
+
+.center {
+    background: -webkit-gradient(linear,left top,left bottom,from(rgba(22,22,22,.1)),color-stop(75%,rgba(22,22,22,.5)),to(#161616)),url(../images/bg-masthead.jpg);
+    background: linear-gradient(to bottom,rgba(22,22,22,.1) 0,rgba(22,22,22,.5) 75%,#161616 100%),url(../images/bg-masthead.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    border-bottom: 1px solid #DFD300;
+    margin: auto;
+    width: 1000px;
+    margin-top: 80px;
+}
+
+/* Slice-Controls*/
+.slice-controls {
+    display: grid;
+    justify-content: center;
+    grid-template-areas: 'slice slice slice';
+    grid-template-columns: 290px auto 290px;
+    grid-gap: 5px;
+    /*align-items: center;*/
+}
+
+/* Audio-Controls*/
+.audio-controls {
+    display: grid;
+    justify-content: center;
+    grid-template-areas: 'Names Preset effect delay' 'prevslice play rectone nextslice' 'muteBTN eqBTN metronome other';
+    grid-template-columns: 150px 150px 150px 150px;
+    grid-gap: 5px;
+    align-items: center;
+}
+
+
+/* Grid-Items */
+.audio-volume {
+    grid-area: audio-volume;
+}
+
+.audio {
+    grid-area: audio;
+}
+
+.blockinfo {
+    grid-area: blockinfo;
+}
+
+.moreinfo {
+    grid-area: moreinfo;
+}
+
+.eqbase {
+    grid-area: eqbase;
+}
+.presetcode {
+    grid-area: presetcode;
+}
+
+
+.audio-container {
+    display: grid;
+    grid-template-areas: 'blockinfo blockinfo blockinfo blockinfo blockinfo blockinfo' 'audio-volume audio audio audio audio eqbase' 'presetcode presetcode presetcode presetcode presetcode presetcode' 'footer footer footer footer footer footer';
+    grid-gap: 5px;
+    margin: auto;
+    width: 100%;
+}
+
+    .grid-container > div {
+        /*background-color: #000000;
+        text-align: center;
+        padding: 2px 0;
+        font-size: 16px;*/
+    }
+
+
+/* Navigation */
+header {
+    height: 5%;
+    border-bottom: 1px solid #DFD300;
+    text-transform: uppercase;
+}
+
+/* Container-Items */
+.vol-panel {
+    grid-area: vol-panel;
+    float:left;
+}
+.right-panel {
+    grid-area: right-panel;
+    float:right;
+    align-content: center;
+}
+
+
+/* Container */
+.play-container {
+    margin: auto;
+    margin-top:10px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-areas: 'vol-panel blocknav right-panel' 'vol-panel audio-container right-panel';
+    border: 5px;
+    text-align: center;
+}
+
+/*More Info*/
+#blockTB {
+    height: 20px;
+    width: 600px;
+    margin-left: 0px;
+    margin-top: 5px;
+}
+
+#searchTB {
+    text-align: center;
+    height: 20px;
+    width: auto;
+    margin-left: 0px;
+    margin-top: 10px;
+}
+
+#testTB {
+    height: 20px;
+    width: 600px;
+    margin-left: 0px;
+    margin-top: 5px;
+}
+
+#slicedstrg {
+    height: 14px;
+    width: 70px;
+    text-align: center;
+}
+#indexvalue {
+    height: 14px;
+    width: 70px;
+    text-align: center;
+}
+
+/*More Info*/
+
+
+.logo {
+    color: #fff;
+    font-weight: normal;    
+    margin-left: 0px;
+    margin-bottom: 0px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+/*nav {
+    float: right;
+    width: 30%;
+    text-align: right;
+    margin-right: 0px;
+
+}*/
+
+.blocknav {
+    
+}
+
+
+
+header nav ul {
+    list-style: none;
+    float: right;
+}
+
+nav ul li {
+    float: right;
+    color: #FFFFFF;
+    font-size: 12px;
+    text-align: left;
+    margin-right: 5px;
+    letter-spacing: 2px;
+    font-weight: lighter;
+    transition: all 0.3s linear;
+}
+
+ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+ul li:hover a {
+    color: #FFFFFF;
+}
+
+
+
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #717070;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: lighter;
+    letter-spacing: 2px;
+    border-top-width: 2px;
+}
+input{
+   
+}
+
+/*
+	CODE MIRROR
+*/
+.CodeMirror {
+    border: 2px solid #777;
+    height: auto;
+}
+
+.CodeMirror-focused {
+    border: 2px solid #22DBC0;
+}
+
+.cm-s-default .cm-property {
+    color: #3833ED !important;
+}
+
+.cm-s-default .cm-string {
+    color: #7F33ED;
+}
+
+.cm-s-default .cm-number {
+    color: #f5871f;
+}
+
+.Error {
+    border-color: red;
+}

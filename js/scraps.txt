@@ -1,0 +1,95 @@
+﻿function navheight() {
+	var h = document.getElementById("searchTB").value;
+
+	var navbuttons = document.getElementById("blocknavbuttons");
+	var navbtns = navbuttons.getElementsByTagName("BUTTON");
+	for (var i = 0; i < navbtns.length; i++) {
+
+		var btn0 = navbtns[0];
+		var btn1 = navbtns[1];
+		var btn2 = navbtns[2];
+		var btn3 = navbtns[3];
+		var btn4 = navbtns[4];
+		var btn5 = navbtns[5];
+		var btn6 = navbtns[6];
+		var btn7 = navbtns[7];
+
+		btn0.addEventListener("click", function (e) {
+
+			document.getElementById("searchTB").value = h - 1000;
+
+		});
+		btn1.addEventListener("click", function (e) {
+
+			document.getElementById("searchTB").value = h - 100;
+
+		});
+		btn2.addEventListener("click", function (e) {
+
+			document.getElementById("searchTB").value = h - 10;
+		});
+		btn3.addEventListener("click", function (e) {
+
+			document.getElementById("searchTB").value = h--;
+		});
+		btn4.addEventListener("click", function (e) {
+
+			document.getElementById("searchTB").value = h++;
+		});
+		btn5.addEventListener("click", function (e) {
+
+			document.getElementById("searchTB").value = h + 10;
+		});
+		btn6.addEventListener("click", function (e) {
+
+			document.getElementById("searchTB").value = h + 100;
+		});
+		btn7.addEventListener("click", function (e) {
+
+			var h = document.getElementById("searchTB").value;
+			h + 1000;
+			document.getElementById("searchTB").value = h;
+			getstring(h);
+		});
+	}
+	
+	//document.getElementById("searchTB").value = h;
+	//getstring(h);
+}
+
+
+function selectslice(slice) {
+
+	var slicetype = document.getElementById("slice").value;
+
+	switch (slicetype) {
+		case "slice":
+			
+			slice = slicestrg();			
+			instrument.triggerAttackRelease(slice, '8n');
+			$("#slicestrg").css('color', 'red', function (i) { return i + 25; });
+			
+			break;
+
+		case "next":
+			slice = nextslice();			
+			instrument.triggerAttackRelease(slice, '16n');
+			$("#nextslice").css('color', 'green' , function (i) { return i + 25; });
+			break;
+
+		case "whole":
+			slice = wholeslice();
+			instrument.triggerAttackRelease(slice, '16n');
+			$("#whole").css('color', 'blue' , function (i) { return i + 25; });
+			break;
+
+		case "half":
+			slice = halfslice();
+			instrument.triggerAttackRelease(slice, '32n');
+			$("#half").css('color', 'purple' , function (i) { return i + 25; });
+
+			break;		
+	}
+	return slice;
+
+}
