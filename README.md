@@ -1,2 +1,0 @@
-# satoshi-nk-1
- 
