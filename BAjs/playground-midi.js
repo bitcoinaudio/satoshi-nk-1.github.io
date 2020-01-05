@@ -1,4 +1,4 @@
-﻿var gblock = 101273;
+﻿var gblock = 212121;
 var vol = new Tone.Volume(-12);
 var eq3 = new Tone.EQ3({
 	
@@ -150,7 +150,7 @@ function getstring(stringtype, merkleroot, hash, getblocktip) {
 		}
 		if (searchstr > parseInt(getblocktip)) {
 			alert("TOO HIGH! Please select Height 0 to " + getblocktip);
-			document.getElementById("searchTB").value = 0;
+			document.getElementById("searchTB").value = getblocktip;
 		}
 	});
 
@@ -165,8 +165,6 @@ function getstring(stringtype, merkleroot, hash, getblocktip) {
 			//var info = `Merkle Root: ${block.merkle_root}<br>
 			//			Hash: ${hash}<br>`;
 			//$(".blockinfo").html(info);
-
-
 
 			switch (stringtype) {
 
@@ -963,6 +961,7 @@ function resetaudio() {
 	Tone.context = new AudioContext();
 	stoptimeout();
 }
+var cp = document.getElementById("makecolorpads");
 function loadplayground() {
 	document.getElementById("searchTB").value = gblock;
 	getstring(gblock);
@@ -973,9 +972,10 @@ function loadplayground() {
 	clipslider();
 	//midiSwitches();
 	changeKnobs();
-	makecolorpads();
+	//makecolorpads();
 	makemidibeatpad();
 	midicanvasSwitches();
+	cp.addEventListener('click', makecolorpads);
 }
 
 

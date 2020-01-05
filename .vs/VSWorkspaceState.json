@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\instrument\\MembraneSynth",
+    "\\BAjs",
     "\\js"
   ],
-  "SelectedNode": "\\js\\recordtonejs.js",
+  "SelectedNode": "\\BAjs\\playground-midi.js",
   "PreviewInSolutionExplorer": false
 }
