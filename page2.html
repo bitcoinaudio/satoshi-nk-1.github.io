@@ -220,7 +220,7 @@
                 <label class="label">Midi Beat Pads</label>
                 <div id="beatpads"></div>
                 <div id="pad-group" class="lower">
-                    <button type="button" id="makecolorpads" class="colorsbtn" onclick="makecolorpads()">Color Pads</button>
+                    <button type="button" id="makecolorpads" class="colorsbtn" onclick="makecolorpads(), makemidibeatpad()">Color Pads</button>
                     <!--<button type="button" id="save" class="colorsbtn" onclick="saveWallpaper()" data-toggle="modal" data-target="#wallpaperModal">SAVE</button>
         <button type="button" id="makebeatpad" class="colorsbtn" onclick="makemidibeatpad()">Beat Pads</button>-->
                     <!--<button type="button" class="colorsbtn" data-toggle="modal" data-target="#babcModal" onclick="makecolorpadsModal()">BABC Modal</button>-->
@@ -516,15 +516,15 @@
     <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
     <!-- Optional JavaScript -->
     
-    <script src="BAjs/BA-webaudio-controls.js"></script>
+    <script src="js/BA-webaudio-controls.js"></script>
     <script src="js/WebAudioRecorder.js"></script>
-    <script src="BAjs/listenBA.js"></script>
-    <script src="BAjs/playgroundrecorder.js"></script>
-    <script src="BAjs/BASequencer.js"></script>
-    <script src="BAjs/colorswatch.js"></script>
-    <script src="BAjs/playpads.js"></script>
+    <script src="js/listenBA.js"></script>
+    <script src="js/playgroundrecorder.js"></script>
+    <script src="js/BASequencer.js"></script>
+    <script src="js/colorswatch.js"></script>
+    <script src="js/playpads.js"></script>
     <script src="js/html2canvas.js"></script>
-    <script src="BAjs/playground-midi.js"></script>
+    <script src="js/playground-midi.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- jQuery library -->
     <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->

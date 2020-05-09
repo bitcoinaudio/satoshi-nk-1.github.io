@@ -1,34 +1,46 @@
 var colorstart = 0;
 var colorend = colorstart + 2;
-var count = 0;
+
 function playcolor() {
 	var c = this.id;
 	var s = c.slice(colorstart, colorend);
-	
 	try {
-		count++;
 		//var synth = new Tone.Synth().toMaster();
 		instrument.triggerAttackRelease(s, "4n");
 	}
 	catch (err) {
 		this.height = 0;
 		this.weight = 0;
+		
 		//synth.dispose();
 	}
-	//console.log(count);
-}function playpad() {
+}
+var padstart = 0;
+var padend = 2;
+
+function padclip() {
 	var c = this.id;
-	var s = c.slice(colorstart, colorend);
-	
+	let s = c.slice(padstart, padend);
+	var timeMenu = document.getElementById("time");
+	delayTime = Number(timeMenu.options[timeMenu.selectedIndex].value);
+	padtimeout = setTimeout(padclip.bind(this), delayTime);
+
 	try {
-		count++;
-		var synth = new Tone.Synth().toMaster();
-		synth.triggerAttackRelease(s, "4n");
+		console.log("padclip(c) " + padstart, padend, s);
+		instrument.triggerAttackRelease(s, "4n");
 	}
 	catch (err) {
 		//this.height = 0;
 		//this.weight = 0;
-		synth.dispose();
+		//bd();
 	}
-	console.log(count);
+	if (padend === 6) {
+		clearTimeout(padtimeout);
+		padstart = 0;
+		padend = padstart + 2;
+	}
+	padstart++;
+	padend++;
+	return c;
 }
+
