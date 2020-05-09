@@ -1,8 +1,13 @@
 ﻿body {
     background-color: #474747 !important;
+   overflow-y: scroll;
 }
-
-
+body::-webkit-scrollbar {
+    display:none;
+}
+body {
+    -ms-overflow-style:none;
+}
 /*navbar begin*/
 
 #navbar {
@@ -23,8 +28,19 @@
     margin-bottom: 0px;
 }
 #powerCol {
-    margin-top: 5px;
-    margin-left:10px;
+    margin-top: 17px;
+    margin-left:35px;
+}
+#logo {
+    background: url(../images/bitcoinaudio-icon-2020-005.png);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 100%;
+    width: 70px;
+    height: 70px;
+    margin:auto;
+    
 }
 #power {
     background: url(../images/img-nk-1-pads/POWER.svg);
@@ -122,9 +138,9 @@
     margin-top: 9px;
     margin-left: 0px;
     display: grid;
-    grid-template-columns: auto auto 150px;
+    grid-template-columns: auto auto auto auto;
     grid-template-rows: 24px 24px 24px 24px;
-    grid-template-areas: 'blocksTB searchLabel searchTB' ' blockTB blockTB blockTB' ' clipTB clipTB clipTB' 'testTB testTB testTB';
+    grid-template-areas: 'blocksTBLabel blocksTB searchLabel searchTB' ' blockTB blockTB blockTB blockTB' ' clipTB clipTB clipTB clipTB' 'testTB testTB testTB testTB';
 }
 
 .TB {
@@ -147,10 +163,19 @@
     display: block;
     background: rgba(253, 255, 131, 0.00);
 }
-#searchTB {   
-    grid-area: searchTB;
-    text-align: left;
+#blocksTBLabel {
+    padding: 3px;
+    grid-area: blocksTBLabel;
+    text-align: right;
+    display: block;
     background: rgba(253, 255, 131, 0.00);
+}
+#searchTB {
+    grid-area: searchTB;
+    text-align: center;
+    background: rgba(253, 255, 131, 0.00);
+    box-shadow: inset 0px 0px 4px #000000;
+    border-radius: 4px;
 }
 #blockTB {
     grid-area: blockTB;
@@ -241,7 +266,7 @@
 }
 #nkplay {
     display: grid;
-    grid-template-columns: 360px 450px auto;
+    grid-template-columns: auto auto auto;
     grid-template-areas: 'left-panel colors-container pads-container';
     background: url(../images/img-nk-1-pads/synth-base-panel.svg);
     background-position: top;
@@ -249,37 +274,84 @@
     background-attachment: scroll;
     background-size: 100%;
     width: 1200px;
-    height: 450px;
+    height: 470px;
     margin: auto;
-    margin-left: auto;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-bottom: -1px;
 }
 #left-panel {
-    margin-left: 45px;
+    margin-left: 40px;
     height:400px;
 }
+/*#colorpads-container {
+    width: 450px;
+    height: 450px;
+    box-shadow: inset 0px 0px 15px #000000;
+    border-radius: 14px;
+}*/
+#colorpads {
+   
+}
+
+#beatpads {
+    box-shadow: inset 0px 0px 15px #000000;
+    border-radius: 14px;   
+    grid-area: pads-container;
+    padding: 10px;
+    width: 340px;
+    height: 340px;
+    display: grid;
+    grid-template-columns: 80px 80px 80px 80px;
+    grid-template-rows: 80px 80px 80px 80px;
+    grid-template-areas: 'pad13 pad14 pad15 pad16' 'pad9 pad10 pad11 pad12' 'pad5 pad6 pad7 pad8' 'pad1 pad2 pad3 pad4';
+}
+
 #knob-controls {
+    display: grid;   
+    justify-items: center;
+    box-shadow: inset 0px 0px 15px #000000;
+    border-radius: 14px;
+    height: 70px;
+}
+#knobs {
     display: grid;
     grid-template-columns: 64px 64px 64px 64px;
     grid-template-areas: 'knob1 knob2 knob3 knob4';
+    justify-items: center;
+    align-items: center;
 }
 #slider-controls {
     display: grid;
-    grid-template-columns: 52px 52px 52px 52px 52px 52px;
+    /*grid-template-columns: 52px 52px 52px 52px 52px 52px;
     grid-auto-rows: auto auto;
-    grid-template-areas: 'slider1 slider2 slider3 slider4 slider5 slider6' 'slider7 . . . . slider8';
+    grid-template-areas: 'slider1 slider2 slider3 slider4 slider5 slider6' 'slider7 slider8';*/
+    justify-items: center;
+}
+#sliders {
+    display: grid;
+    grid-template-columns:25px 40px 10px  40px 40px 40px 40px 40px;
+    grid-auto-rows: auto auto;
+    grid-template-areas: 'vert-label vol spacer slider2 slider3 slider4 slider5 ';
+    justify-items: center;
+    padding: 8px;
+}
+#slicer {
+    height: auto;
+    text-align: center;
+    box-shadow: inset 0px 0px 15px #000000;
+    border-radius: 14px;
 }
 #transporter {
     display: grid;
     grid-template-columns: 80px 80px 80px 80px;
-    grid-auto-rows: 30px 30px;
+    grid-auto-rows: 30px;
     grid-template-areas: 'playtoneseq playallheights muteBTN record' 'prevslicebutton  stringindex stringindex clickthrubutton';
+    justify-items: center;
 }
 #notebuttons {
     display: grid;
     grid-template-columns: 80px 80px 80px 80px;
     grid-template-areas: 'wholeswitch halfswitch quarterswitch eighthswitch';
+    justify-content:center;
 }
 #midiswitches {
 
@@ -403,30 +475,15 @@
 
 #lowercontrols {
     display: grid;
-    grid-template-columns: auto auto auto ;
-    grid-template-areas: 'preset-group sound-group pad-group';
-}
-#colors-container {
-    margin-top: 5px;
-    margin-left: 25px;
-    height: auto;
-}
-#pads-container {
-    margin-left: -24px;
-    grid-area: pads-container;
-    padding: 55px;
-    width: 420px;
-    height: 400px;
-    display: grid;
-    grid-template-columns: 80px 80px 80px 80px;
-    grid-template-rows: 80px 80px 80px 80px;
-    grid-template-areas: 'pad13 pad14 pad15 pad16' 'pad9 pad10 pad11 pad12' 'pad5 pad6 pad7 pad8' 'pad1 pad2 pad3 pad4';
+    grid-template-columns: auto auto ;
+    grid-template-areas: 'preset-group sound-group';
 }
 #sound-group {
     grid-area: sound-group;
     display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    grid-template-areas: 'stringtype name preset effect slice';
+    grid-template-columns: 120px 120px 120px ;
+    grid-template-rows:auto;
+    grid-template-areas: 'time name preset ';
 }
 #pad-group {
     display: grid;
@@ -515,20 +572,53 @@
     height: 116px;
     margin: auto;
     margin-left: auto;
-    margin-bottom: 0px;
+    margin-bottom: 1px;
 }
 
 #lowercontrols {
     margin-left: 45px;
     display: grid;
-    grid-template-columns:  auto auto;
-    grid-template-areas: 'sound-group pad-group';
+    grid-template-columns: auto auto auto;
+    grid-template-areas: 'sound-group sound-group nk-1-logo';
+}
+#nk-1-logo {
+    background: url(../images/NK-1-logo.png);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 100%;
+    width: 200px;
+    height: 25px;
+    margin-left:415px;    
+    margin-top:70px;
 }
 .lower {
-
     margin-top: 10px;
 }
-
+.label {
+    text-align: center;
+    display: block;
+    color: #FDFF83 !important;
+    font-family: 'Orbitron', sans-serif;
+    font-size:small;
+}
+.inline-label {
+   
+    text-align: center;
+    display: inline-block;
+    color: #FDFF83 !important;
+    font-family: 'Orbitron', sans-serif;
+    font-size: small;
+}
+.vert-label {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    text-align: center;
+    display: inline-block;
+    color: #FDFF83 !important;
+    font-family: 'Orbitron', sans-serif;
+    font-size: small;
+}
 .dropdown {
     background: url(../images/synth-btn-bgn.svg);
     background-size: 100%;
@@ -553,10 +643,9 @@
 .dropdown::-ms-expand {
     display: none;
 }
-.dropdown:hover {
-
-
-}
+    .dropdown:hover {
+       
+    }
     .dropdown:focus {
         color: #ffd800;
         outline: none;
@@ -565,6 +654,7 @@
         background-color: black;
         font-size: small;
     }
+
 .colorsbtn {
     background: url(../images/synth-btn-bgn.svg);
     background-size: 100%;

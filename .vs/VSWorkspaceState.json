@@ -2,8 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\BAjs",
+    "\\examples\\audio",
+    "\\examples\\js",
+    "\\instrument",
+    "\\instrument\\PolySynth",
     "\\js"
   ],
-  "SelectedNode": "\\BAjs\\playground-midi.js",
+  "SelectedNode": "\\instrument\\PolySynth\\PolySynth.json",
   "PreviewInSolutionExplorer": false
 }

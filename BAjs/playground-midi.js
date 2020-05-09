@@ -1,7 +1,6 @@
-﻿var gblock = 212121;
-var vol = new Tone.Volume(-12);
+﻿var vol = new Tone.Volume(-12);
 var eq3 = new Tone.EQ3({
-	
+
 	"lowFrequency": 120,
 	"highFrequency": 2500
 });
@@ -135,14 +134,17 @@ function getblockinfo(hash, merkleroot) {
 	});
 }
 
-
+var mcp = document.getElementById("makecolorpads");
+var mbp = document.getElementById("makebeatpad");
 function getstring(stringtype, merkleroot, hash, getblocktip) {
 	searchstr = document.getElementById("searchTB").value;
 	stringtype = document.getElementById("stringtype").value;
 	//GET block tip
 	$.get(blockstream + "blocks/tip/height", function (data) {
 		getblocktip = `${data}`;
-		document.getElementById('blocksTB').value = "Highest Block: " + getblocktip;
+		document.getElementById('blocksTB').value = getblocktip;
+		
+		
 		if (searchstr < 0) {
 
 			alert("TOO LOW! Please select Height 0 to " + getblocktip);
@@ -154,7 +156,7 @@ function getstring(stringtype, merkleroot, hash, getblocktip) {
 		}
 	});
 
-
+	
 	//GET Root and Hash of Height
 	$.get(blockstream + "block-height/" + searchstr, function (data) {
 		hash = `${data}`;
@@ -179,7 +181,7 @@ function getstring(stringtype, merkleroot, hash, getblocktip) {
 
 				case "hash":
 					document.getElementById('blockTB').value = hash;
-					document.getElementById('blockTBModal').value = merkleroot;
+					document.getElementById('blockTBModal').value = hash;
 					document.getElementById('clipTB').value = hash;
 					break;
 
@@ -188,11 +190,11 @@ function getstring(stringtype, merkleroot, hash, getblocktip) {
 
 		});
 	});
-
-
+	
+	setTimeout(makecolorpads, 30);
 }
 
-function slicestrg() {	
+function slicestrg() {
 	var m = document.getElementById('clipTB').value;
 	var strgslice = m.slice(start, end);
 	document.getElementById("stringindex").value = start + "," + end;
@@ -246,6 +248,7 @@ function heightplus100k() {
 	var h = document.getElementById("searchTB").value;
 	document.getElementById("searchTB").value = 100000 + parseInt(h, 10);
 	getstring(h);
+
 }
 function heightplus10k() {
 	var h = document.getElementById("searchTB").value;
@@ -261,7 +264,6 @@ function heightplus100() {
 	var h = document.getElementById("searchTB").value;
 	document.getElementById("searchTB").value = 100 + parseInt(h, 10);
 	getstring(h);
-
 }
 function heightplus10() {
 	var h = document.getElementById("searchTB").value;
@@ -270,23 +272,21 @@ function heightplus10() {
 }
 //next height
 function nextheight() {
-	var h = document.getElementById("searchTB").value;
+	
+	var h = document.getElementById("searchTB").value;	
 	h++;
 	document.getElementById("searchTB").value = h;
-	getstring(h);
-	document.getElementById("makecolorpads").click();
-	document.getElementById("makebeatpad").click();
-
-
+	getstring(h);	
+	
 }
 //previous height
 function prevheight() {
-	var h = document.getElementById("searchTB").value;
+	
+	var h = document.getElementById("searchTB").value;	
 	h--;
 	document.getElementById("searchTB").value = h;
 	getstring(h);
-
-
+	
 }
 function heightminus100k() {
 	var h = document.getElementById("searchTB").value;
@@ -315,7 +315,7 @@ function heightminus10() {
 }
 
 var cliptb = document.getElementById('clipTB');
-
+var t2stb = document.getElementById('t2sbox');
 function wholeString() {
 	var m = currentstring.value;
 	var start = 0;
@@ -382,7 +382,7 @@ function bd() {
 	Tone.Transport.start();
 
 
-	
+
 }
 function ClsdHH() {
 	var metro = new Tone.Player("/Metronome/Box_5_ClsdHH.mp3").toMaster();
@@ -395,7 +395,7 @@ function ClsdHH() {
 		Tone.Transport.start();
 	};
 	Tone.Transport.start();
-	
+
 }
 function OpenClsd() {
 	var metro = new Tone.Player("/Metronome/Box_5_OpenClsd.mp3").toMaster();
@@ -408,7 +408,7 @@ function OpenClsd() {
 		Tone.Transport.start();
 	};
 	Tone.Transport.start();
-	
+
 }
 function OpenHH() {
 	var metro = new Tone.Player("/Metronome/Box_5_OpenHH.mp3").toMaster();
@@ -421,7 +421,7 @@ function OpenHH() {
 		Tone.Transport.start();
 	};
 	Tone.Transport.start();
-	
+
 }
 function RimShot() {
 	var metro = new Tone.Player("/Metronome/Box_5_RimShot.mp3").toMaster();
@@ -434,7 +434,7 @@ function RimShot() {
 		Tone.Transport.start();
 	};
 	Tone.Transport.start();
-	
+
 }
 function RimShot_2() {
 	var metro = new Tone.Player("/Metronome/Box_5_RimShot_2.mp3").toMaster();
@@ -447,11 +447,24 @@ function RimShot_2() {
 		Tone.Transport.start();
 	};
 	Tone.Transport.start();
-	
+
 }
 function playtext() {
+
+	var speaktext = document.getElementById("t2sbox").value;
+	var msg = new SpeechSynthesisUtterance(speaktext);
+	var voices = window.speechSynthesis.getVoices();
+	msg.voice = voices[4]; //[4] = "Google UK English Female"
+	
+	msg.lang = 'en-US';
+	window.speechSynthesis.speak(msg);
+	msg.volulme = 1;
+	console.log(msg.voice);
+	//speaktext = "";
 	//responsiveVoice.speak("For those who don't know me, I'm Hal Finney. ");
-	responsiveVoice.speak("A purely peer-to-peer version of electronic cash would allow online payments to be sent directly from one party to another without going through a financial institution. Digital signatures provide part of the solution, but the main benefits are lost if a trusted third party is still required to prevent double-spending. We propose a solution to the double spending problem using a peer  to  peer network.The network timestamps transactions by hashing them into an ongoing chain of hash  based proof of work, forming a record that cannot be changed without redoing the proof of work. The longest chain not only serves as proof of the sequence of events witnessed, but proof that it came from the largest pool of CPU power.As long as a majority of CPU power is controlled by nodes that are not cooperating to attack the network, they'll generate the longest chain and outpace attackers. The network itself requires minimal structure. Messages are broadcast on a best effort basis, and nodes can leave and rejoin the network at will, accepting the longest proof-of-work chain as proof of what happened while they were gone.");
+	//responsiveVoice.enableWindowClickHook();
+	//responsiveVoice.speak(speaktext, "UK English Female", { volume: 1 });
+	t2stb.blur();
 }
 var timeout;
 function stoptimeout() {
@@ -477,11 +490,15 @@ function playseq() {
 	var timeMenu = document.getElementById("time");
 	// Delay Time
 	var timeTime = Number(timeMenu.options[timeMenu.selectedIndex].value);
+
 	var bpmTime = Tone.Transport.bpm.value;
 	//var timeTime = (60000 / bpmTime);
 	//var timeTime = speedvariable/(bpmTime / 600);
-	timeout = setTimeout(playseq, timeTime);	
-	document.getElementById("consoleTB").value = "bpmTime = " + bpmTime + " timeTime = " + timeTime;
+
+	var time = 333 / bpmTime;
+	timeout = setTimeout(playseq, timeTime);
+	
+	document.getElementById("consoleTB").value = "bpmTime = " + bpmTime + " time = " + time;
 	try {
 		playstr();
 		Tone.Transport.start();
@@ -501,45 +518,45 @@ function playstr(string) {
 	return string;
 }
 function changeKnobs() {
-	
+
 	// knob control
 	var knob = document.getElementById("knob-controls");
 	var knobs = knob.getElementsByTagName('webaudio-knob');
 	for (var i = 0; i < knobs.length; i++) {
 
-		var knob0 = knobs[0];		
-		knob0.addEventListener("change", function (e) {	
+		var knob0 = knobs[0];
+		knob0.addEventListener("change", function (e) {
 			document.getElementById("consoleTB").value = this.value + " " + this.id;
 			//notation = this.value;
 		});
 
 		var knob1 = knobs[1];
 		knob1.addEventListener("change", function (e) {
-			document.getElementById("consoleTB").value = this.value + " " + this.id;	
+			document.getElementById("consoleTB").value = this.value + " " + this.id;
 			//speedvariable = this.value;
 		});
-		var knob2 = knobs[2];		
-		knob2.addEventListener("change", function (e) {	
-			
+		var knob2 = knobs[2];
+		knob2.addEventListener("change", function (e) {
+
 			document.getElementById("consoleTB").value = this.value + " " + this.id;
 			//notation = this.value;
 		});
 
 		var knob3 = knobs[3];
 		knob3.addEventListener("change", function (e) {
-			document.getElementById("consoleTB").value = this.value + " " + this.id;	
+			document.getElementById("consoleTB").value = this.value + " " + this.id;
 			//speedvariable = this.value;
 		});
 	}
 	//playstr();
-	
-	
+
+
 }
 
 
 function changevolume() {
 	// Volume Slider[0]
-	var audiosliders = document.getElementById("slider-controls");
+	var audiosliders = document.getElementById("left-panel");
 	var sliders = audiosliders.getElementsByTagName('webaudio-slider');
 
 	for (var i = 0; i < sliders.length; i++) {
@@ -553,18 +570,18 @@ function changevolume() {
 			//vol.volume.rampTo(1, 1);
 		});
 	}
-		
+
 }
 function changeEQ() {
 
-	var eqbase = document.getElementById("slider-controls");
+	var eqbase = document.getElementById("left-panel");
 	var eq = eqbase.getElementsByTagName('webaudio-slider');
 	//document.getElementById("consoleTB").value = eq.length;
 	for (var i = 0; i < eq.length; i++) {
 
-		var eqlow = eq[1];
-		var eqmid = eq[2];
-		var eqhigh = eq[3];
+		var eqlow = eq[3];
+		var eqmid = eq[4];
+		var eqhigh = eq[5];
 		eqlow.addEventListener("change", function (e) {
 			document.getElementById("consoleTB").value = this.value + " " + this.id;
 			eq3.low.value = this.value;
@@ -589,7 +606,7 @@ function changeEQ() {
 }
 function changePan() {
 	// Pan Slider[6]
-	var audiosliders = document.getElementById("slider-controls");
+	var audiosliders = document.getElementById("left-panel");
 	var sliders = audiosliders.getElementsByTagName('webaudio-slider');
 	var panVol = new Tone.Panner();
 	for (var i = 0; i < sliders.length; i++) {
@@ -605,13 +622,13 @@ function changePan() {
 }
 function clipslider() {
 	// Clip Slider[7]
-	var clipliders = document.getElementById("slider-controls");
+	var clipliders = document.getElementById("left-panel");
 	var sliders = clipliders.getElementsByTagName('webaudio-slider');
 	for (var i = 0; i < sliders.length; i++) {
 		var slider = sliders[7];
 		slider.addEventListener("change", function (e) {
 
-			document.getElementById("consoleTB").value = this.value+" "+this.id;
+			document.getElementById("consoleTB").value = this.value + " " + this.id;
 			start = this.value;
 			end = this.value + 2;
 		});
@@ -624,20 +641,21 @@ function midiSwitches() {
 	var switches = midiswitches.getElementsByTagName("webaudio-switch");
 	for (var i = 0; i < switches.length; i++) {
 		//var midiswitch = switches[1];
-			//midiswitch.addEventListener('click', function (e) {});
+		//midiswitch.addEventListener('click', function (e) {});
 		webAudioControlsMidiManager.addMidiListener(function (event) {
 			var data = event.data;
 			var channel = data[0] & 0xf;
 			var controlNumber = data[1];
 
-			console.log("Midi event hook: data:[" + data + "] channel:" + channel + " cc:" + controlNumber);
-			
-			
+			console.log("midiswitches() event hook: data:[" + data + "] channel:" + channel + " cN:" + controlNumber);
+
+
 			// do whatever you want with the event
 			// ...
 			switch (controlNumber) {
 				case 60:
-					padclip();
+					//padclip();
+					console.log("case:60");
 					break;
 
 				case 62:
@@ -660,7 +678,7 @@ function midiSwitches() {
 					eighthString();
 					playseq();
 					break;
-				
+
 				case 81:
 					start = 0;
 					end = start + 2;
@@ -734,63 +752,90 @@ function midiSwitches() {
 }
 
 function midicanvasSwitches() {
-	var clipstart = 0;
+	var clipstart = -1;
 	var clipend = 2;
 
 	var midiswitches = document.getElementById("pads-container");
 	var switches = midiswitches.getElementsByTagName("webaudio-switch");
+
+
 	for (var i = 0; i < 1; i++) {
 		//var midiswitch = switches[i];
 		//midiswitch.addEventListener('click', function (e) {
-			//console.log(i);
+		//console.log(i);
 		//});
+
 		webAudioControlsMidiManager.addMidiListener(function (event) {
 			var data = event.data;
 			var channel = data[0] & 0xf;
 			var controlNumber = data[1];
-			//console.log("MidiCanvasSwitch event hook: data:[" + data + "] channel:" + channel + " cc:" + controlNumber);
+			console.log("midicanvasSwitches() event hook: data:[" + data + "] channel:" + channel + " cN:" + controlNumber);
 			// do whatever you want with the event
 			// ...
-			
-			switch (controlNumber) {
-				
-				case 60:					
-					var sixty = switches[0];
-					var clip = sixty.id;
-					sixty.setAttribute("midicc", "1."+ controlNumber);
-					console.log(sixty.id);
 
-					var s = clip.slice(clipstart, clipend);
+			var padstart = 0;
+			var padend = 2;
+
+			function playcase(s) {
+				var clip = switches[i].id;
+				s = clip.slice(padstart, padend);
+
+
+				try {
+					console.log("playcase():" + padstart, padend, s);
+					instrument.triggerAttackRelease(s, "4n");
+				}
+				catch (err) {
+
+					//bd();
+				}
+				if (padend === 6) {
+					clearTimeout(padtimeout);
+					padstart = 0;
+					padend = 2;
+				}
+				padstart++;
+				padend++;
+			}
+
+
+
+
+			switch (controlNumber) {
+
+				case 60:
+					var sixty = switches[0];
+					sixty.setAttribute("midicc", "1." + controlNumber);
+					console.log("midicanvasSwitches() " + sixty.id + " " + controlNumber);
 					var timeMenu = document.getElementById("time");
 					delayTime = Number(timeMenu.options[timeMenu.selectedIndex].value);
-					var padtimeout = setTimeout(this, delayTime);
+					padtimeout = setTimeout(playcase.bind(this), delayTime);
 
-					try {
-						console.log(clipstart, clipend, s, this);
-						instrument.triggerAttackRelease(s, "4n");
-					}
-					catch (err) {
-						//this.height = 0;
-						//this.weight = 0;
-						//bd();
-					}
-					if (s === "") {
-						clearTimeout(padtimeout);
-						clipstart = 0;
-						clipend =  2;
-					}
-					clipstart++;
-					clipend++;
+
+
+					//try {
+					//	console.log("case 60: " + clipstart + ", " + clipend + " " + s + " " );
+					//	instrument.triggerAttackRelease(s, "4n");
+					//}
+					//catch (err) {
+					//	//
+					//	//this.weight = 0;
+					//	bd();
+					//}
+					//if (s === "") {
+					//	clearTimeout(padtimeout);
+					//	clipstart = 0;
+					//	clipend =  2;
+					//}
+					//clipstart++;
+					//clipend++;
 					break;
-					
+
 				case 62:
+
 					var sixty2 = switches[1];
-					var c = sixty2.id;
 					sixty2.setAttribute("midicc", "1." + controlNumber);
-					console.log(sixty2.id, c);
-
-					padclip(c);
-
+					playcase();
 					break;
 
 				case 64:
@@ -808,7 +853,6 @@ function midicanvasSwitches() {
 					var sixty7 = switches[4];
 					sixty7.setAttribute("midicc", "1." + controlNumber);
 					console.log(sixty7.id);
-					
 					break;
 
 				case 69:
@@ -829,31 +873,31 @@ function midicanvasSwitches() {
 					console.log(seventy2.id);
 					break;
 				case 74:
-					
+
 					break;
 				case 76:
-					
+
 					break;
 				case 77:
-					
+
 					break;
 				case 79:
-					
+
 					break;
 				case 81:
-					
+
 					break;
 
 				case 83:
-					
+
 					break;
 
 				case 84:
-					
+
 					break;
 
 				case 86:
-					
+
 					break;
 
 				case 117:
@@ -898,7 +942,7 @@ function playallheights() {
 	}
 	catch (err) {
 		//
-	}	
+	}
 
 	if (n === "") {
 		stoptimeout();
@@ -956,14 +1000,16 @@ function metrostart() {
 function metrostop() {
 	Tone.Transport.stop();
 }
-function resetaudio() {	
+function resetaudio() {
 	//Tone.context.close();
 	Tone.context = new AudioContext();
 	stoptimeout();
 }
 var cp = document.getElementById("makecolorpads");
 function loadplayground() {
+	var gblock =420000;
 	document.getElementById("searchTB").value = gblock;
+	
 	getstring(gblock);
 	changevolume();
 	changePan();
@@ -972,10 +1018,10 @@ function loadplayground() {
 	clipslider();
 	//midiSwitches();
 	changeKnobs();
-	//makecolorpads();
-	makemidibeatpad();
+	
 	midicanvasSwitches();
-	cp.addEventListener('click', makecolorpads);
+	
+
 }
 
 

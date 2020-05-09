@@ -2,7 +2,6 @@
  
 function chooseRandomInstrument(){
 	var keys = Object.keys(PresetList);
-	//var randomInst = keys[Math.floor(Math.random() * keys.length)];
 	var randomInst = keys[Math.floor(Math.random() * keys.length)];
 	return randomInst;
 }
@@ -31,7 +30,7 @@ function loadPreset(inst, preset){
 
 // Load song
 
-function loadSong(song) {
+/*function loadSong(song) {
 	var xhr = new XMLHttpRequest;
 	var url = "./songs/" + song;
 
@@ -40,7 +39,7 @@ function loadSong(song) {
 	};
 
 }
-
+*/
 function setCurrentPreset(preset) {
 
 	try {
@@ -69,31 +68,36 @@ function setupEvents(){
  *  Tone.js
  */
 var instrument;
+//var Reverb = new Tone.Reverb("4n", 0.1).toMaster();	
+
+
 function makeInstrument(inst){
 	if (instrument){
 		instrument.dispose();
 	}
 	instrument = new Tone[inst]().toMaster();
+	//instrument.connect(Reverb);
+
 }
 
-var keyboard = new AudioKeys({
-	polyphony: 1,
-	rows: 1,
-	priority: "last"
-});
+//var keyboard = new AudioKeys({
+//	polyphony: 1,
+//	rows: 1,
+//	priority: "last"
+//});
 
 
-keyboard.down(function (note) {
-	if (instrument.toString() === "NoiseSynth") {
-		instrument.triggerAttack();
-	} else {
-		instrument.triggerAttack(note.frequency);
-	}
-});
+//keyboard.down(function (note) {
+//	if (instrument.toString() === "NoiseSynth") {
+//		instrument.triggerAttack();
+//	} else {
+//		instrument.triggerAttack(note.frequency);
+//	}
+//});
 
-keyboard.up(function (note) {
-    instrument.triggerRelease();
-});
+//keyboard.up(function (note) {
+//    instrument.triggerRelease();
+//});
 
 /**
  *  Dropdown
@@ -132,18 +136,17 @@ var instruments = document.querySelector("#Names select");
 	instruments.addEventListener("input", function(e){
 		makeInstrument(instruments.value);
 		makePresetDropDown(instruments.value);
-		
+
 	}, true);
 
 	var presets = document.querySelector("#Preset select");
 	presets.addEventListener("input", function(e){
 		makeInstrument(instruments.value);
 		loadPreset(instruments.value, presets.value);
-		
+
 	}, true);
 
 	makeInstrument(instruments.value);
-
 	
 }
 
@@ -156,9 +159,11 @@ var codemirror;
 //document loaded
 document.addEventListener("DOMContentLoaded", function(event) {
 	//choose a random instrument and preset
-	var randomInst = chooseRandomInstrument();
+	//var randomInst = chooseRandomInstrument();
+	var randomInst = "MembraneSynth";
 	makeInstrument(randomInst);
-	// loadPreset(randomInst, randomPreset);
+
+	//loadPreset(randomInst, randomPreset);
 	//setup the events
 	setupEvents();
 	codemirror = new CodeMirror(document.querySelector("#JSON"), {

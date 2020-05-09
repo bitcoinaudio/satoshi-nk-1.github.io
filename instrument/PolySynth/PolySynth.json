@@ -1,6 +1,6 @@
 {
-  "polyphony": 4,
-  "volume": 0,
-  "detune": 0,
+  "polyphony": 3,
+  "volume": 0.5,
+  "detune": 0.5,
   "voice": "Tone.Synth"
 }
