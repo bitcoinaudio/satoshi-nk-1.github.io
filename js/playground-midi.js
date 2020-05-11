@@ -1007,7 +1007,7 @@ function resetaudio() {
 }
 var cp = document.getElementById("makecolorpads");
 function loadplayground() {
-	var gblock =420000;
+	var gblock = 630000;
 	document.getElementById("searchTB").value = gblock;
 	
 	getstring(gblock);

@@ -3,6 +3,16 @@
  * Copyright 2013-2018 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-grayscale/blob/master/LICENSE)
  */
+#logo {
+    background: url(../images/bitcoinaudio-icon-2020-005.png);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 100%;
+    width: 70px;
+    height: 70px;
+    margin: auto;
+}
 
 #mainNav {
     min-height: 56px;
@@ -118,7 +128,15 @@
         letter-spacing: .8rem;
         background: -webkit-linear-gradient(rgba(255,255,255,.9),rgba(255,255,255,0));
         -webkit-text-fill-color: transparent;
-        -webkit-background-clip: text
+        -webkit-background-clip: text;
+        background: url(../images/bitcoinaudio-logo-BA-2020-005.png);
+        background-position: top;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: 100%;
+        width: 500px;
+        height: 100px;
+        margin: auto;
     }
 
     .masthead h2 {
