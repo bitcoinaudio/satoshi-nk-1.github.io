@@ -80,6 +80,9 @@ function makeInstrument(inst){
 
 }
 
+//bind the interface
+//document.querySelector("tone-meter").bind(instrument);
+
 //var keyboard = new AudioKeys({
 //	polyphony: 1,
 //	rows: 1,
@@ -159,8 +162,8 @@ var codemirror;
 //document loaded
 document.addEventListener("DOMContentLoaded", function(event) {
 	//choose a random instrument and preset
-	//var randomInst = chooseRandomInstrument();
-	var randomInst = "MembraneSynth";
+	var randomInst = chooseRandomInstrument();
+	//var randomInst = "MembraneSynth";
 	makeInstrument(randomInst);
 
 	//loadPreset(randomInst, randomPreset);

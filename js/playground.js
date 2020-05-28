@@ -9,7 +9,7 @@ var eq3 = new Tone.EQ3({
 });
 var searchstr = document.getElementById("searchTB").value;
 
-var currentstring = document.getElementById('blockTB');
+var currentstring = document.getElementById('dataString');
 var currentstringlength = currentstring.length;
 var start = currentstringlength - currentstringlength;
 var end = start + 2;
@@ -182,13 +182,13 @@ function getstring(stringtype, merkleroot, hash) {
 
 				case "root":
 
-					document.getElementById('blockTB').value = merkleroot;
+					document.getElementById('dataString').value = merkleroot;
 					document.getElementById('clipTB').value = merkleroot;
 
 					break;
 
 				case "hash":
-					document.getElementById('blockTB').value = hash;
+					document.getElementById('dataString').value = hash;
 					document.getElementById('clipTB').value = hash;
 					break;
 

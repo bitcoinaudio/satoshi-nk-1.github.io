@@ -63,7 +63,7 @@
                 <!-- <div id="blockinfo" class="blockinfo">
             <h1>blockinfo goes hear</h1>
         </div>-->
-                <input type="text" id="blockTB" class="TB" name="blockTB" onselect="playselected()" onchange="makemidibeatpada(), makecolorpads()" />
+                <input type="text" id="dataString" class="TB" name="dataString" onselect="playselected()" onchange="makemidibeatpada(), makecolorpads()" />
 
                 <input type="text" id="clipTB" class="TB" name="clipTB" value="" onselect="playseq()" />
 
@@ -134,7 +134,6 @@
                             <br />
                             <webaudio-param link="vol"></webaudio-param>
                         </span>
-                        <div id="spacer"></div>
 
                         <span>
                             <webaudio-slider id="slider1" src="images/vsliderbody.png" knobsrc="images/slice-slider-knob.svg" direction="vert" value="0" min="-80" max="6" midicc="0.13" midilearn="1"></webaudio-slider>
@@ -148,6 +147,7 @@
                             <webaudio-param link="slider2"></webaudio-param>
                         </span>
 
+                        <label id="vert-label" class="vert-label">Equalizer</label>
 
                         <span>
                             <webaudio-slider id="slider3" src="images/vsliderbody.png" knobsrc="images/slice-slider-knob.svg" direction="vert" value="0" min="-80" max="6" midicc="0.15" midilearn="1"></webaudio-slider>
@@ -325,7 +325,7 @@
 
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-                    <input type="text" id="blockTBModal" name="blockTB" />
+                    <input type="text" id="dataStringModal" name="dataString" />
 
                     <!-- Modal body -->
                     <div class="modal-body">
@@ -358,6 +358,7 @@
                 <tone-transport></tone-transport>
                 <tone-step-sequencer></tone-step-sequencer>
             </tone-content>
+          
         </div>
 
         <div id="t2s">

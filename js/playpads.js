@@ -41,6 +41,6 @@ function padclip() {
 	}
 	padstart++;
 	padend++;
-	return c;
+	
 }
 

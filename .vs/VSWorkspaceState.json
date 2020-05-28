@@ -1,13 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\BAjs",
-    "\\examples\\audio",
-    "\\examples\\js",
     "\\instrument",
     "\\instrument\\PolySynth",
     "\\js"
   ],
-  "SelectedNode": "\\instrument\\PolySynth\\PolySynth.json",
+  "SelectedNode": "\\js\\listenBA.js",
   "PreviewInSolutionExplorer": false
 }

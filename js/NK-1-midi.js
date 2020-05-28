@@ -1,8 +1,8 @@
-﻿var vol = new Tone.Volume(0);
+﻿var vol = new Tone.Volume(-12);
 var eq3 = new Tone.EQ3({
 
 	"lowFrequency": 120,
-	"highFrequency": 5000
+	"highFrequency": 2500
 });
 var searchstr = document.getElementById("searchTB").value;
 
@@ -10,15 +10,25 @@ var currentstring = document.getElementById('dataString');
 var currentstringlength = currentstring.length;
 var start = 0;
 var end = start + 2;
+
+var iStart = 0;
+var iEnd = iStart +1;
 var blockstream = "https://blockstream.info/api/";
-var notation = "1n";
+
+var notation = quarternote;
+
+var halfnote = "2n";
+var wholenote = "8n";
+var quarternote = "4n";
+var sixteenthnote = "16n";
+
 var reverb = new Tone.Reverb({
 	"decay": 5,
 	"preDelay": 0.01
 }).toMaster();
 var chorus = new Tone.Chorus(8, 5, 1).toMaster();
 var pingpongdelay = new Tone.PingPongDelay({
-	"delayTime": "8n",
+	"delayTime": "16n",
 	"feedback": 0.8,
 	"wet": 0.25
 }).toMaster();
@@ -77,13 +87,7 @@ function selectslice(slice) {
 	var slicetype = document.getElementById("slice").value;
 
 	switch (slicetype) {
-		//case "raw":
-
-		//	slice = slicestrg();			
-		//	instrument.triggerAttackRelease(slice, '4n');
-		//	$("#slicestrg").css('color', 'red', function (i) { return i + 25; });
-
-		//	break;
+		
 		case "slice":
 
 			slice = slicestrg();
@@ -136,7 +140,7 @@ function getblockinfo(hash, merkleroot) {
 
 var mcp = document.getElementById("makecolorpads");
 var mbp = document.getElementById("makebeatpad");
-function getstring(stringtype, merkleroot, hash, getblocktip) {
+function getstring(stringtype, merkleroot, hash, getblocktip, dataString) {
 	searchstr = document.getElementById("searchTB").value;
 	stringtype = document.getElementById("stringtype").value;
 	//GET block tip
@@ -176,24 +180,52 @@ function getstring(stringtype, merkleroot, hash, getblocktip) {
 					document.getElementById('dataString').value = merkleroot;
 					document.getElementById('dataStringModal').value = merkleroot;
 					document.getElementById('clipTB').value = merkleroot;
-
+					var msplit = merkleroot.split("");
+					console.log(msplit);
+					dataString = msplit;
 					break;
 
 				case "hash":
 					document.getElementById('dataString').value = hash;
 					document.getElementById('dataStringModal').value = hash;
 					document.getElementById('clipTB').value = hash;
+					var hsplit = hash.split("");
+					console.log(hsplit);
+					dataString = hsplit;
 					break;
 
 			}
+			splitstring();
+			//for (i = 0, i < dataString.length; i++;) {
 
-
+			//	console.log(dataString[1] + dataString[i += 1]);
+			//}
 		});
 	});
 	
 	setTimeout(makecolorpads, 30);
+	
 }
 
+
+
+function splitstring() {
+	var s = document.getElementById("dataString").value;
+	var data = s.split("");
+	console.log(data[0] + data[1] + data[3] + data[4]);
+	
+
+	for (i = 0; i < s.length; i++) {
+		var note = data[i] + data[i += 1];
+		
+		instrument.triggerAttackRelease("c4", "8n");
+
+		console.log(note);
+	}
+	
+}
+
+	
 function slicestrg() {
 	var m = document.getElementById('clipTB').value;
 	var strgslice = m.slice(start, end);
@@ -450,12 +482,11 @@ function RimShot_2() {
 
 }
 function playtext() {
-	speechSynthesis.cancel();
+
 	var speaktext = document.getElementById("t2sbox").value;
 	var msg = new SpeechSynthesisUtterance(speaktext);
 	var voices = window.speechSynthesis.getVoices();
-	msg.voice = voices[4]; //[4] = "Google UK English Female"
-	
+	msg.voice = voices[4]; //[4] = "Google UK English Female"	
 	msg.lang = 'en-US';
 	window.speechSynthesis.speak(msg);
 	msg.volulme = 1;
@@ -465,7 +496,6 @@ function playtext() {
 	//responsiveVoice.enableWindowClickHook();
 	//responsiveVoice.speak(speaktext, "UK English Female", { volume: 1 });
 	t2stb.blur();
-	
 }
 var timeout;
 function stoptimeout() {
@@ -487,19 +517,14 @@ var speedvariable = 32;
 function playseq() {
 	stoptimeout();
 	var n = nextslice();
-	//var n = slicestrg();	
-	var timeMenu = document.getElementById("time");
-	// Delay Time
-	var timeTime = Number(timeMenu.options[timeMenu.selectedIndex].value);
-
 	var bpmTime = Tone.Transport.bpm.value;
-	//var timeTime = (60000 / bpmTime);
+	var timeTime = (bpmTime);
 	//var timeTime = speedvariable/(bpmTime / 600);
 
 	var time = 333 / bpmTime;
-	timeout = setTimeout(playseq, timeTime);
-	
-	//document.getElementById("consoleTB").value = "bpmTime = " + bpmTime + " time = " + time;
+	timeout = setTimeout(playseq, timeTime );
+
+	document.getElementById("consoleTB").value = "bpmTime = " + bpmTime + " time = " + timeTime;
 	try {
 		playstr();
 		Tone.Transport.start();
@@ -515,7 +540,8 @@ function playstr(string) {
 	selectslice();
 	var s = slicestrg();
 	nextslice();
-	instrument.triggerAttackRelease(s, notation);
+	instrument.triggerAttackRelease(s, quarternote);
+	console.log(s);
 	return string;
 }
 function changeKnobs() {
@@ -568,7 +594,7 @@ function changevolume() {
 			vol.volume.value = this.value;
 			instrument.chain(vol, Tone.Master);
 
-			vol.volume.rampTo(1, 1);
+			//vol.volume.rampTo(1, 1);
 		});
 	}
 
@@ -601,9 +627,7 @@ function changeEQ() {
 
 
 	}
-
 	instrument.chain(eq3, Tone.Master);
-
 }
 function changePan() {
 	// Pan Slider[6]
@@ -636,6 +660,22 @@ function clipslider() {
 	}
 
 }
+
+function TempoSlider() {
+	// Clip Slider[7]
+	var tempoSlider = document.getElementById("left-panel");
+	var sliders = tempoSlider.getElementsByTagName('webaudio-slider');
+	for (var i = 0; i < sliders.length; i++) {
+		var slider = sliders[8];
+		slider.addEventListener("change", function (e) {
+
+			document.getElementById("consoleTB").value = this.value + " " + this.id;
+			Tone.Transport.bpm.value = this.value;
+		});
+	}
+
+}
+
 
 function midiSwitches() {
 	var midiswitches = document.getElementById("midiswitches");
@@ -1007,22 +1047,27 @@ function resetaudio() {
 	stoptimeout();
 }
 var cp = document.getElementById("makecolorpads");
-function loadplayground() {
-	var gblock = 57043;
-	document.getElementById("searchTB").value = gblock;
+
+
 	
+
+
+function loadplayground() {
+	var gblock = 0;
+	document.getElementById("searchTB").value = gblock;
 	getstring(gblock);
 	changevolume();
 	changePan();
 	changeEQ();
 	pRecorder();
 	clipslider();
+	TempoSlider();
 	//midiSwitches();
 	changeKnobs();
-	
+
 	midicanvasSwitches();
-	
+
+
+
 
 }
-
-

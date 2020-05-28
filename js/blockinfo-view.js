@@ -31,7 +31,7 @@ class BlockinfoView extends PolymerElement {
                                 
                                 <option value="root">Root</option>
                                 <option value="hash">Hash</option>
-                            </select><input id="blockTB" class="text-center" name="blockTB">
+                            </select><input id="dataString" class="text-center" name="dataString">
 
 <hr>
     `;

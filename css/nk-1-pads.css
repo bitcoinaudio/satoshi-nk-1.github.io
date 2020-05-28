@@ -140,7 +140,7 @@ body {
     display: grid;
     grid-template-columns: auto auto auto auto;
     grid-template-rows: 24px 24px 24px 24px;
-    grid-template-areas: 'blocksTBLabel blocksTB searchLabel searchTB' ' blockTB blockTB blockTB blockTB' ' clipTB clipTB clipTB clipTB' 'testTB testTB testTB testTB';
+    grid-template-areas: 'blocksTBLabel blocksTB searchLabel searchTB' ' dataString dataString dataString dataString' ' clipTB clipTB clipTB clipTB' 'testTB testTB testTB testTB';
 }
 
 .TB {
@@ -177,8 +177,8 @@ body {
     box-shadow: inset 0px 0px 4px #000000;
     border-radius: 4px;
 }
-#blockTB {
-    grid-area: blockTB;
+#dataString {
+    grid-area: dataString;
     background: rgba(253, 255, 131, 0.00);
 }
 #clipTB {
@@ -343,8 +343,7 @@ body {
 #transporter {
     display: grid;
     grid-template-columns: 80px 80px 80px 80px;
-    grid-auto-rows: 30px;
-    grid-template-areas: 'playtoneseq playallheights muteBTN record' 'prevslicebutton  stringindex stringindex clickthrubutton';
+    grid-template-areas: 'playtoneseq playallheights muteBTN record';
     justify-items: center;
 }
 #notebuttons {
@@ -358,9 +357,9 @@ body {
 }
 #sliceinfo {
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto auto ;
     grid-auto-rows: 30px;
-    grid-template-areas: 'prevslicebutton  stringindex stringindex clickthrubutton';
+    grid-template-areas: 'prevslicebutton  stringindex stringindex clickthrubutton ';
 }
 #prevslicebutton {
     grid-area: prevslicebutton;
@@ -562,6 +561,12 @@ body {
     border: none;
     background-color: transparent;
 }
+#tempo {
+  display: flex;
+  
+
+}
+
 #av-controls {
     background: url(../images/img-nk-1-pads/nk-navbar-bkg.svg);
     background-position: top;

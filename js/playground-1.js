@@ -8,7 +8,7 @@ var eq3 = new Tone.EQ3({
 	"highFrequency": 4500
 });
 
-var currentstring = document.getElementById('blockTB');
+var currentstring = document.getElementById('dataString');
 var currentstringlength = currentstring.length;
 var start = -1;
 var end = 1;
@@ -139,12 +139,12 @@ function getstring(searchstr, stringtype) {
 
 			case "root":
 
-				document.getElementById('blockTB').value = root;
+				document.getElementById('dataString').value = root;
 				
 				break;
 
 			case "hash":
-				document.getElementById('blockTB').value = hash;
+				document.getElementById('dataString').value = hash;
 				break;
 				
 		}
