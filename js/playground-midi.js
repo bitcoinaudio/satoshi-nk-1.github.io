@@ -8,8 +8,11 @@ var searchstr = document.getElementById("searchTB").value;
 
 var currentstring = document.getElementById('dataString');
 var currentstringlength = currentstring.length;
-var start = 0;
-var end = start + 2;
+var clip = document.getElementById("clipTB").value;
+var cliplength = clip.length;
+
+ start = -1;
+ end = start + 1;
 var blockstream = "https://blockstream.info/api/";
 var notation = "1n";
 var reverb = new Tone.Reverb({
@@ -136,14 +139,14 @@ function getblockinfo(hash, merkleroot) {
 
 var mcp = document.getElementById("makecolorpads");
 var mbp = document.getElementById("makebeatpad");
-function getstring(stringtype, merkleroot, hash, getblocktip) {
+var getblocktip;
+function getstring(stringtype, merkleroot, hash) {
 	searchstr = document.getElementById("searchTB").value;
 	stringtype = document.getElementById("stringtype").value;
 	//GET block tip
 	$.get(blockstream + "blocks/tip/height", function (data) {
 		getblocktip = `${data}`;
 		document.getElementById('blocksTB').value = getblocktip;
-		
 		
 		if (searchstr < 0) {
 
@@ -197,7 +200,7 @@ function getstring(stringtype, merkleroot, hash, getblocktip) {
 function slicestrg() {
 	var m = document.getElementById('clipTB').value;
 	var strgslice = m.slice(start, end);
-	document.getElementById("stringindex").value = start + "," + end;
+	document.getElementById("stringindex").value = start + "," + end + " slice:" + strgslice;
 	return strgslice;
 
 }
@@ -208,8 +211,8 @@ function nextslice() {
 	return nextindex;
 }
 function prevslice() {
-	var prevstart = start--;
-	var prevend = end--;
+	var prevstart = --start;
+	var prevend = --end;
 	var previndex = slicestrg(prevstart, prevend);
 	return previndex;
 }
@@ -217,16 +220,21 @@ function wholeslice() {
 	var wslice = nextslice();
 	start++;
 	end++;
-	//document.getElementById("whole").value = "whole = " + wslice;	
 	return wslice;
 
 }
 function halfslice() {
 	var nexthalf = wholeslice();
-	//document.getElementById("half").value = "half = " + nexthalf;
 }
 function resetslice() {
-	start = 0;
+	start = -1;
+	end = start + 2;
+
+	playstr();
+}
+function reverseslice() {
+	start = cliplength - 1;
+	
 	end = start + 2;
 
 	playstr();
@@ -511,12 +519,12 @@ function playseq() {
 		loopseq();
 	}
 }
-function playstr(string) {
+function playstr() {
 	selectslice();
 	var s = slicestrg();
 	nextslice();
 	instrument.triggerAttackRelease(s, notation);
-	return string;
+	
 }
 function changeKnobs() {
 
@@ -977,11 +985,16 @@ function clickthruseq() {
 }
 function clickbackseq() {
 	var p = prevslice();
+	--start;
+	--end;
 	playstr(p);
-
-	if (p === "") {
-		resetslice();
-		prevheight();
+	console.log(cliplength);
+	if (start === Math.sign(-1)) {
+		//start = cliplength.value - 2;
+		//end = start + 2;
+		reverseslice();
+		//prevheight();
+		
 	}
 }
 
@@ -1006,23 +1019,24 @@ function resetaudio() {
 	Tone.context = new AudioContext();
 	stoptimeout();
 }
-var cp = document.getElementById("makecolorpads");
-function loadplayground() {
-	var gblock = 57043;
-	document.getElementById("searchTB").value = gblock;
-	
-	getstring(gblock);
+
+function loadblockinfo() {
+	var gblock = 0;	
+	document.getElementById("searchTB").value = gblock;		
+	getstring();
+
+}
+function loadplayground() {	
+	loadblockinfo();	
 	changevolume();
 	changePan();
 	changeEQ();
 	pRecorder();
 	clipslider();
-	//midiSwitches();
-	changeKnobs();
-	
+	midiSwitches();
+	changeKnobs();	
 	midicanvasSwitches();
 	
-
 }
 
 

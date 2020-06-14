@@ -44,7 +44,7 @@ function setCurrentPreset(preset) {
 
 	try {
 		instrument.set(JSON.parse(preset));
-		instrument.connect(Tone.context.destination);
+		//instrument.connect(Tone.context.destination);
 	} catch(e){
 		// indicate the error
 		codemirror.getWrapperElement().classList.add("Error");
@@ -75,8 +75,8 @@ function makeInstrument(inst){
 	if (instrument){
 		instrument.dispose();
 	}
-	instrument = new Tone[inst]().toMaster();
-	//instrument.connect(Reverb);
+	instrument =  new Tone[inst]().toMaster();
+	//instrument.connect(Tone.context.destination);
 
 }
 
@@ -135,7 +135,8 @@ function makePresetDropDown(instrument){
 }
 
 function dropDownEvents(){
-var instruments = document.querySelector("#Names select");
+	var instruments = document.querySelector("#Names select");
+
 	instruments.addEventListener("input", function(e){
 		makeInstrument(instruments.value);
 		makePresetDropDown(instruments.value);
@@ -143,13 +144,13 @@ var instruments = document.querySelector("#Names select");
 	}, true);
 
 	var presets = document.querySelector("#Preset select");
+
 	presets.addEventListener("input", function(e){
 		makeInstrument(instruments.value);
 		loadPreset(instruments.value, presets.value);
 
 	}, true);
 
-	makeInstrument(instruments.value);
 	
 }
 
