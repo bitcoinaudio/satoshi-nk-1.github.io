@@ -1,8 +1,8 @@
 ﻿var vol = new Tone.Volume(0);
 var eq3 = new Tone.EQ3({
 
-	"lowFrequency": 120,
-	"highFrequency": 5000
+	"lowFrequency": 400,
+	"highFrequency": 2500
 });
 var searchstr = document.getElementById("searchTB").value;
 
@@ -10,11 +10,17 @@ var currentstring = document.getElementById('dataString');
 var currentstringlength = currentstring.length;
 var clip = document.getElementById("clipTB").value;
 var cliplength = clip.length;
+var start = -1;
+var end = start + 1;
 
- start = -1;
- end = start + 1;
+function slicer(sstart,send) {
+	sstart = -1;
+	send = sstart + 1;
+	console.log(sstart + ", " + send)
+
+}
 var blockstream = "https://blockstream.info/api/";
-var notation = "1n";
+var notation = "4n";
 var reverb = new Tone.Reverb({
 	"decay": 5,
 	"preDelay": 0.01
@@ -135,6 +141,8 @@ function getblockinfo(hash, merkleroot) {
 			document.getElementById('consoleTB').value = merkleroot;
 		});
 	});
+
+	
 }
 
 var mcp = document.getElementById("makecolorpads");
@@ -186,6 +194,16 @@ function getstring(stringtype, merkleroot, hash) {
 					document.getElementById('dataString').value = hash;
 					document.getElementById('dataStringModal').value = hash;
 					document.getElementById('clipTB').value = hash;
+					//document.getElementById('dataString').value = hash.replace(/^0+/, '');
+					//document.getElementById('dataStringModal').value = hash.replace(/^0+/, '');
+					//document.getElementById('clipTB').value = hash.replace(/^0+/, '');
+					break;
+
+				case "hashno0s":
+					
+					document.getElementById('dataString').value = hash.replace(/^0+/, '');
+					document.getElementById('dataStringModal').value = hash.replace(/^0+/, '');
+					document.getElementById('clipTB').value = hash.replace(/^0+/, '');
 					break;
 
 			}
@@ -193,11 +211,18 @@ function getstring(stringtype, merkleroot, hash) {
 
 		});
 	});
+
 	
-	setTimeout(makecolorpads, 30);
+	
 }
 
+function DataStringChange() {
+	makecolorpads();
+	makemidibeatpad();
+	//setTimeout(DataStringChange, 30);
+}
 function slicestrg() {
+	
 	var m = document.getElementById('clipTB').value;
 	var strgslice = m.slice(start, end);
 	document.getElementById("stringindex").value = start + "," + end + " slice:" + strgslice;
@@ -279,7 +304,7 @@ function heightplus10() {
 	getstring(h);
 }
 //next height
-function nextheight() {
+function nextheight() {	
 	
 	var h = document.getElementById("searchTB").value;	
 	h++;
@@ -493,6 +518,7 @@ function playselected() {
 }
 var speedvariable = 32;
 function playseq() {
+
 	stoptimeout();
 	var n = nextslice();
 	//var n = slicestrg();	
@@ -511,6 +537,7 @@ function playseq() {
 	try {
 		playstr();
 		Tone.Transport.start();
+		
 	}
 	catch (err) {
 		//bd();
@@ -518,13 +545,14 @@ function playseq() {
 	if (n === "") {
 		loopseq();
 	}
+	
 }
-function playstr() {
+function playstr(string) {
 	selectslice();
 	var s = slicestrg();
 	nextslice();
 	instrument.triggerAttackRelease(s, notation);
-	
+	return string;
 }
 function changeKnobs() {
 
@@ -561,8 +589,6 @@ function changeKnobs() {
 
 
 }
-
-
 function changevolume() {
 	// Volume Slider[0]
 	var audiosliders = document.getElementById("left-panel");
@@ -944,6 +970,7 @@ function playallheights() {
 	var timeMenu = document.getElementById("time");
 	delayTime = Number(timeMenu.options[timeMenu.selectedIndex].value);
 	timeout = setTimeout(playallheights, delayTime);
+
 	try {
 		playstr();
 		//document.getElementById("makebeatpad").click();

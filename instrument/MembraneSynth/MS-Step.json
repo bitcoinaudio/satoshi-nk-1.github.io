@@ -1,0 +1,14 @@
+﻿{
+  "pitchDecay": 0.08,
+  "octaves": 10,
+  "oscillator": {
+    "type": "sine"
+  },
+  "envelope": {
+    "attack": 0.001,
+    "decay": 0.8,
+    "sustain": 0.1,
+    "release": 2,
+    "attackCurve": "step"
+  }
+}

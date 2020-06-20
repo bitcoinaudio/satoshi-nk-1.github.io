@@ -1,11 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\css",
-    "\\instrument",
     "\\instrument\\PolySynth",
-    "\\js"
+    "\\js",
+    "\\Sound Money"
   ],
-  "SelectedNode": "\\js\\listenBA.js",
+  "SelectedNode": "\\js\\playground-midi.js",
   "PreviewInSolutionExplorer": false
 }
