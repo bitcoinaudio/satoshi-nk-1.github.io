@@ -258,8 +258,8 @@ function halfslice() {
 	//document.getElementById("half").value = "half = " + nexthalf;
 }
 function resetslice() {
-	start = 0;
-	end = start + 2;
+	start = -1;
+	end = start + 1;
 
 	playstr();
 }

@@ -76,29 +76,27 @@ function pRecorder () {
 
 	$bufferSize.attr('disabled', false);
 
-
+	audioIn = void 0;
 
 	redcordLevel = Tone.context.createGain();
-
-	redcordLevel.gain.value = 5;
-
-	instrument.connect(redcordLevel);
+	redcordLevel.gain.value = 5;	
 
 	audioInLevel = Tone.context.createGain();
-
 	audioInLevel.gain.value = 5;
 
 	mixer = Tone.context.createGain();
-
+	mixer.gain.value = 5;
+	
 	redcordLevel.connect(mixer);
-
-	audioIn = void 0;
-
 	audioInLevel.connect(mixer);
 
+	instrument.connect(mixer);
+	instrument.connect(Tone.context.destination);
 
-	mixer.connect(Tone.context.destination);
-	
+
+
+	//instrument.connect(redcordLevel);
+	//mixer.connect(Tone.context.destination);
 
 	audioRecorder = new WebAudioRecorder(mixer, {
 		workerDir: 'js/',

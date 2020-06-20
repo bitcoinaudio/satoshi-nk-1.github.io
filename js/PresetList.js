@@ -15,7 +15,10 @@ var PresetList = {
 		"ThinSaws.json"
 	],
 	"MembraneSynth": [
-		"MembraneSynth.json"
+		"MembraneSynth.json",
+		"MS-Step.json",
+		"MS-Bass.json",
+		"Pizza.json"
 	],
 	"MonoSynth": [
 		"Bah.json",

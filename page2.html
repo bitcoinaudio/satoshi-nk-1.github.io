@@ -59,11 +59,9 @@
                 <input id="blocksTB" class="TB" type="text" name="blocksTB">
 
                 <label id="searchLabel" for="searchTB">Now Playing: </label>
-                <input type="text" id="searchTB" class="TB" onchange="getstring()" placeholder="ENTER BLOCK HEIGHT">
-                <!-- <div id="blockinfo" class="blockinfo">
-            <h1>blockinfo goes hear</h1>
-        </div>-->
-                <input type="text" id="dataString" class="TB" name="dataString" onselect="playselected()" onchange="makemidibeatpada(), makecolorpads()" />
+                <input type="text" id="searchTB" class="TB" onchange="getstring()" autocomplete="off" placeholder="ENTER BLOCK HEIGHT">
+               
+                <input type="text" id="dataString" class="TB" name="dataString" onselect="playselected()" />
 
                 <input type="text" id="clipTB" class="TB" name="clipTB" value="" onselect="playseq()" />
 
@@ -86,6 +84,7 @@
                 <select name="stringtype" id="stringtype" class="dropdown" onchange="getstring()">
                     <option value="root">Root</option>
                     <option value="hash">Hash</option>
+                    <option value="hashno0s">Hash no 0s</option>
                 </select>
             </div>
         </div>
@@ -521,7 +520,6 @@
     <script type="text/javascript" src="js/javascript.js"></script>
     <script type="text/javascript" src="js/audiokeys.js"></script>
     <script type="text/javascript" src="js/PresetList.js"></script>
-    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
     <!-- Optional JavaScript -->
     
     <script src="js/BA-webaudio-controls.js"></script>

@@ -1,17 +1,26 @@
 ﻿var vol = new Tone.Volume(0);
 var eq3 = new Tone.EQ3({
 
-	"lowFrequency": 120,
-	"highFrequency": 5000
+	"lowFrequency": 400,
+	"highFrequency": 2500
 });
 var searchstr = document.getElementById("searchTB").value;
 
 var currentstring = document.getElementById('dataString');
 var currentstringlength = currentstring.length;
-var start = 0;
-var end = start + 2;
+var clip = document.getElementById("clipTB").value;
+var cliplength = clip.length;
+var start = -1;
+var end = start + 1;
+
+function slicer(sstart,send) {
+	sstart = -1;
+	send = sstart + 1;
+	console.log(sstart + ", " + send)
+
+}
 var blockstream = "https://blockstream.info/api/";
-var notation = "1n";
+var notation = "4n";
 var reverb = new Tone.Reverb({
 	"decay": 5,
 	"preDelay": 0.01
@@ -132,18 +141,20 @@ function getblockinfo(hash, merkleroot) {
 			document.getElementById('consoleTB').value = merkleroot;
 		});
 	});
+
+	
 }
 
 var mcp = document.getElementById("makecolorpads");
 var mbp = document.getElementById("makebeatpad");
-function getstring(stringtype, merkleroot, hash, getblocktip) {
+var getblocktip;
+function getstring(stringtype, merkleroot, hash) {
 	searchstr = document.getElementById("searchTB").value;
 	stringtype = document.getElementById("stringtype").value;
 	//GET block tip
 	$.get(blockstream + "blocks/tip/height", function (data) {
 		getblocktip = `${data}`;
 		document.getElementById('blocksTB').value = getblocktip;
-		
 		
 		if (searchstr < 0) {
 
@@ -183,6 +194,16 @@ function getstring(stringtype, merkleroot, hash, getblocktip) {
 					document.getElementById('dataString').value = hash;
 					document.getElementById('dataStringModal').value = hash;
 					document.getElementById('clipTB').value = hash;
+					//document.getElementById('dataString').value = hash.replace(/^0+/, '');
+					//document.getElementById('dataStringModal').value = hash.replace(/^0+/, '');
+					//document.getElementById('clipTB').value = hash.replace(/^0+/, '');
+					break;
+
+				case "hashno0s":
+					
+					document.getElementById('dataString').value = hash.replace(/^0+/, '');
+					document.getElementById('dataStringModal').value = hash.replace(/^0+/, '');
+					document.getElementById('clipTB').value = hash.replace(/^0+/, '');
 					break;
 
 			}
@@ -190,14 +211,21 @@ function getstring(stringtype, merkleroot, hash, getblocktip) {
 
 		});
 	});
+
 	
-	setTimeout(makecolorpads, 30);
+	
 }
 
+function DataStringChange() {
+	makecolorpads();
+	makemidibeatpad();
+	//setTimeout(DataStringChange, 30);
+}
 function slicestrg() {
+	
 	var m = document.getElementById('clipTB').value;
 	var strgslice = m.slice(start, end);
-	document.getElementById("stringindex").value = start + "," + end;
+	document.getElementById("stringindex").value = start + "," + end + " slice:" + strgslice;
 	return strgslice;
 
 }
@@ -208,8 +236,8 @@ function nextslice() {
 	return nextindex;
 }
 function prevslice() {
-	var prevstart = start--;
-	var prevend = end--;
+	var prevstart = --start;
+	var prevend = --end;
 	var previndex = slicestrg(prevstart, prevend);
 	return previndex;
 }
@@ -217,16 +245,21 @@ function wholeslice() {
 	var wslice = nextslice();
 	start++;
 	end++;
-	//document.getElementById("whole").value = "whole = " + wslice;	
 	return wslice;
 
 }
 function halfslice() {
 	var nexthalf = wholeslice();
-	//document.getElementById("half").value = "half = " + nexthalf;
 }
 function resetslice() {
-	start = 0;
+	start = -1;
+	end = start + 2;
+
+	playstr();
+}
+function reverseslice() {
+	start = cliplength - 1;
+	
 	end = start + 2;
 
 	playstr();
@@ -271,7 +304,7 @@ function heightplus10() {
 	getstring(h);
 }
 //next height
-function nextheight() {
+function nextheight() {	
 	
 	var h = document.getElementById("searchTB").value;	
 	h++;
@@ -485,6 +518,7 @@ function playselected() {
 }
 var speedvariable = 32;
 function playseq() {
+
 	stoptimeout();
 	var n = nextslice();
 	//var n = slicestrg();	
@@ -503,6 +537,7 @@ function playseq() {
 	try {
 		playstr();
 		Tone.Transport.start();
+		
 	}
 	catch (err) {
 		//bd();
@@ -510,6 +545,7 @@ function playseq() {
 	if (n === "") {
 		loopseq();
 	}
+	
 }
 function playstr(string) {
 	selectslice();
@@ -553,8 +589,6 @@ function changeKnobs() {
 
 
 }
-
-
 function changevolume() {
 	// Volume Slider[0]
 	var audiosliders = document.getElementById("left-panel");
@@ -936,6 +970,7 @@ function playallheights() {
 	var timeMenu = document.getElementById("time");
 	delayTime = Number(timeMenu.options[timeMenu.selectedIndex].value);
 	timeout = setTimeout(playallheights, delayTime);
+
 	try {
 		playstr();
 		//document.getElementById("makebeatpad").click();
@@ -977,11 +1012,16 @@ function clickthruseq() {
 }
 function clickbackseq() {
 	var p = prevslice();
+	--start;
+	--end;
 	playstr(p);
-
-	if (p === "") {
-		resetslice();
-		prevheight();
+	console.log(cliplength);
+	if (start === Math.sign(-1)) {
+		//start = cliplength.value - 2;
+		//end = start + 2;
+		reverseslice();
+		//prevheight();
+		
 	}
 }
 
@@ -1006,23 +1046,24 @@ function resetaudio() {
 	Tone.context = new AudioContext();
 	stoptimeout();
 }
-var cp = document.getElementById("makecolorpads");
-function loadplayground() {
-	var gblock = 57043;
-	document.getElementById("searchTB").value = gblock;
-	
-	getstring(gblock);
+
+function loadblockinfo() {
+	var gblock = 0;	
+	document.getElementById("searchTB").value = gblock;		
+	getstring();
+
+}
+function loadplayground() {	
+	loadblockinfo();	
 	changevolume();
 	changePan();
 	changeEQ();
 	pRecorder();
 	clipslider();
-	//midiSwitches();
-	changeKnobs();
-	
+	midiSwitches();
+	changeKnobs();	
 	midicanvasSwitches();
 	
-
 }
 
 
