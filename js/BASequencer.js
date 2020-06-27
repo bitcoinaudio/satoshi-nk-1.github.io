@@ -1,4 +1,8 @@
 ﻿//setup a polyphonic sampler
+console.log("sequencer loaded");
+var str = getstring();
+console.log(str);
+
 var keys = new Tone.Players({
 	"BD": "audio/Box_5_BD.[mp3|ogg]",
 	"RimShot": "audio/Box_5_RimShot.[mp3|ogg]",

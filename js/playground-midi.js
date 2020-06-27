@@ -11,7 +11,7 @@ var currentstringlength = currentstring.length;
 var clip = document.getElementById("clipTB").value;
 var cliplength = clip.length;
 var start = -1;
-var end = start + 1;
+var end = start + 0;
 
 function slicer(sstart,send) {
 	sstart = -1;

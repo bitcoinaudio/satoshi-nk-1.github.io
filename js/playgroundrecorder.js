@@ -432,12 +432,28 @@ function pRecorder () {
 		if (recorder.options.encodeAfterRecord) {
 			$modalProgress.modal('hide');
 		}
+
 		saveRecording(blob, recorder.encoding);
+
+		// Load Tone.Player with recorded blob
+		var player = new Tone.Player({
+			"url": URL.createObjectURL(blob),
+			"loop": true
+		}).toMaster();
+		console.log(blob);
+		//bind the interface
+		document.querySelector("tone-play-toggle").bind(player);
+		document.querySelector("tone-meter").bind(player);
+		document.querySelector("tone-player").bind(player);
+
 	};
 
 	audioRecorder.onError = function (recorder, message) {
 		onError(message);
 	};
+
+	
+
 	
 }
 
