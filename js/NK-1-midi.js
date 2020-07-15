@@ -645,7 +645,7 @@ function changePan() {
 	}
 
 }
-function clipslider() {
+function loopslider() {
 	// Clip Slider[7]
 	var clipliders = document.getElementById("left-panel");
 	var sliders = clipliders.getElementsByTagName('webaudio-slider');
@@ -1060,7 +1060,7 @@ function loadplayground() {
 	changePan();
 	changeEQ();
 	pRecorder();
-	clipslider();
+	loopslider();
 	TempoSlider();
 	//midiSwitches();
 	changeKnobs();

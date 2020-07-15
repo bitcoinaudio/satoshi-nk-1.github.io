@@ -117,7 +117,7 @@
 
 
                         <span>
-                            <webaudio-knob id="knob4" src="images/LittlePhatty.png" value="32" max="64" min="0" step="2" diameter="32" sprites="100" tooltip="Speed" midicc="0.25" midilearn="1"></webaudio-knob>
+                            <webaudio-knob id="knob4" src="images/LittlePhatty.png" value="32" max="64" min="0" step="1" diameter="32" sprites="100" tooltip="Slice" midicc="0.25" midilearn="1"></webaudio-knob>
                             <br />
                             <webaudio-param link="knob4"></webaudio-param>
                         </span>
@@ -129,7 +129,7 @@
                         <label id="vert-label" class="vert-label">Volume</label>
                         <span>
 
-                            <webaudio-slider id="vol" src="images/vsliderbody.png" knobsrc="images/slice-slider-knob.svg" direction="vert" value="0" min="-40" max="40" step=".5" tooltip="volume" midicc="0.12" midilearn="1"></webaudio-slider>
+                            <webaudio-slider id="vol" src="images/vsliderbody.png" knobsrc="images/slice-slider-knob.svg" direction="vert" value="-12" min="-60" max="40" step=".5" tooltip="volume" midicc="0.12" midilearn="1"></webaudio-slider>
                             <br />
                             <webaudio-param link="vol"></webaudio-param>
                         </span>
@@ -177,10 +177,17 @@
                     </span>
                     <br />
                     <span>
-                        <label class="inline-label">Slice</label>
-                        <webaudio-slider id="clipSlider" style="position: relative" src="images/slice-slider.svg" knobsrc="images/slice-slider-knob.svg" direction="horz" value="0" min="0" max="63" step="1" units="%" tooltip="Slice" midicc="0.25" midilearn="1"></webaudio-slider>
+                        <label class="inline-label">Loop Start</label>
+                        <webaudio-slider id="loopstart" style="position: relative" src="images/slice-slider.svg" knobsrc="images/slice-slider-knob.svg" direction="horz" value="0" min="0" max="64" step="1" units="%" tooltip="Loop Start" midicc="0.25" midilearn="1"></webaudio-slider>
 
-                        <webaudio-param link="clipSlider"></webaudio-param>
+                        <webaudio-param link="loopstart"></webaudio-param>
+                    </span>
+                    <br />
+                    <span>
+                        <label class="inline-label">Loop  End</label>
+                        <webaudio-slider id="loopend" style="position: relative" src="images/slice-slider.svg" knobsrc="images/slice-slider-knob.svg" direction="horz" value="64" min="0" max="64" step="1" units="%" tooltip="Loop End" midicc="0.25" midilearn="1"></webaudio-slider>
+
+                        <webaudio-param link="loopend"></webaudio-param>
                     </span>
                     <div id="sliceinfo">
                         <input id="prevslicebutton" class="" type="button" onclick="clickbackseq()" />
@@ -350,6 +357,7 @@
 
         <span>
             <button class="btn colorsbtn" data-toggle="collapse" data-target="#toneseq">Sequencer</button>
+            <button class="btn colorsbtn" data-toggle="collapse" data-target="#toneplayer">Player</button>
             <button class="btn colorsbtn" data-toggle="collapse" data-target="#presetcode">Synth Settings</button>
             <button class="btn colorsbtn" onclick="playtext()">SPEAK</button>
         </span>
@@ -365,16 +373,20 @@
             <tone-loader></tone-loader>
             <tone-content>
                 <tone-transport></tone-transport>
-                <tone-step-sequencer></tone-step-sequencer>
-                <tone-meter level color="#ffd800"></tone-meter>
-                <tone-play-toggle></tone-play-toggle>
+                <tone-step-sequencer></tone-step-sequencer>               
             </tone-content>
-            <tone-drawer>
-
-                <tone-player collapsed></tone-player>
-            </tone-drawer>
+           
 
         </div>
+
+        <div id="toneplayer" class="collapse">
+
+            <tone-meter level color="#ffd800"></tone-meter>
+            <tone-play-toggle></tone-play-toggle>
+            <tone-player collapsed></tone-player>
+
+        </div>
+
 
         <div id="t2s">
             <textarea id="t2sbox" rows="4" cols="50" onchange="playtext()"></textarea>

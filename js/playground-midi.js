@@ -1,4 +1,4 @@
-﻿var vol = new Tone.Volume(0);
+﻿var vol = new Tone.Volume(-24);
 var eq3 = new Tone.EQ3({
 
 	"lowFrequency": 400,
@@ -535,6 +535,7 @@ function playseq() {
 	
 	//document.getElementById("consoleTB").value = "bpmTime = " + bpmTime + " time = " + time;
 	try {
+		
 		playstr();
 		Tone.Transport.start();
 		
@@ -548,10 +549,12 @@ function playseq() {
 	
 }
 function playstr(string) {
+	
 	selectslice();
 	var s = slicestrg();
 	nextslice();
 	instrument.triggerAttackRelease(s, notation);
+
 	return string;
 }
 function changeKnobs() {
@@ -602,7 +605,7 @@ function changevolume() {
 			vol.volume.value = this.value;
 			instrument.chain(vol, Tone.Master);
 
-			vol.volume.rampTo(1, 1);
+			//vol.volume.rampTo(1, 1);
 		});
 	}
 
@@ -655,22 +658,47 @@ function changePan() {
 	}
 
 }
-function clipslider() {
-	// Clip Slider[7]
+function loopslider(loopstart, loopend) {
+	
 	var clipliders = document.getElementById("left-panel");
 	var sliders = clipliders.getElementsByTagName('webaudio-slider');
+	const input = document.getElementById('dataString');
+	//var getloopend =  ;
+	
 	for (var i = 0; i < sliders.length; i++) {
-		var slider = sliders[7];
-		slider.addEventListener("change", function (e) {
+		loopstart = sliders[7];
+		loopstart.addEventListener("change", function (e) {
 
 			document.getElementById("consoleTB").value = this.value + " " + this.id;
-			start = this.value;
-			end = this.value + 2;
+			selectLoop(this.value, loopend.value);
 		});
+
+		loopend = sliders[8];
+		loopend.addEventListener("change", function (e) {
+
+			document.getElementById("consoleTB").value = this.value + " " + this.id;
+			selectLoop(loopstart.value, this.value);
+		});
+
+		
 	}
-
+	
 }
-
+function selectLoop(loopstart, loopend) {
+	const input = document.getElementById('dataString');
+	input.focus();
+	input.setSelectionRange(loopstart, loopend);
+	if (loopstart.value >= loopend.value) {
+		loopstart.value = 0;
+		loopend.value = 64
+		input.focus();
+		input.setSelectionRange(loopstart, loopend);
+	}
+	else {
+		//
+	}
+	
+}
 function midiSwitches() {
 	var midiswitches = document.getElementById("midiswitches");
 	var switches = midiswitches.getElementsByTagName("webaudio-switch");
@@ -1059,10 +1087,10 @@ function loadplayground() {
 	changePan();
 	changeEQ();
 	pRecorder();
-	clipslider();
-	midiSwitches();
+	loopslider();
+	//midiSwitches();
 	changeKnobs();	
-	midicanvasSwitches();
+	//midicanvasSwitches();
 	
 }
 

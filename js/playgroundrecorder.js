@@ -89,8 +89,8 @@ function pRecorder () {
 	
 	redcordLevel.connect(mixer);
 	audioInLevel.connect(mixer);
-
 	instrument.connect(mixer);
+
 	instrument.connect(Tone.context.destination);
 
 
@@ -315,7 +315,7 @@ function pRecorder () {
 
 	saveRecording = function (blob, enc) {
 		var html, time, url;
-		// CreatTimeStamp here?
+		// Create OpenTimestamps  here?
 		time = new Date();
 		url = URL.createObjectURL(blob);
 		html = ("<p recording='" + url + "'>") + ("<audio controls src='" + url + "'></audio> ") + ("(" + enc + ") " + (time.toString()) + " ") + ("<a class='btn btn-default' href='" + url + "' download='recording." + enc + "'>") + "Save..." + "</a> " + ("<button class='btn btn-danger' recording='" + url + "'>Delete</button>");

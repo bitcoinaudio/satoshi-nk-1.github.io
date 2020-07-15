@@ -1,6 +1,7 @@
 ﻿//setup a polyphonic sampler
 console.log("sequencer loaded");
-var str = getstring();
+var str = document.getElementById('dataString').value;
+
 console.log(str);
 
 var keys = new Tone.Players({
