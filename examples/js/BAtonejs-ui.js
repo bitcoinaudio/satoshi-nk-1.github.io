@@ -738,7 +738,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 				@collapse=${t => this.collapsed = t.detail}
 				?collapsed=${this.collapsed} label="${this.label}">
 				<tone-player-viz slot="top" class="viz" id="top" color="black"></tone-player-viz>
-				<tone-player-viz class="viz" id="bottom" color="white"></tone-player-viz>
+				<tone-player-viz class="viz" id="bottom" color="#FDFF83"></tone-player-viz>
 				<tone-slider 
 					min="0.5"
 					max="2"

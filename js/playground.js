@@ -670,7 +670,7 @@ function midiSwitches() {
 	}
 }
 
-function clipslider() {
+function loopslider() {
 	// Clip Slider[0]
 	var clipliders = document.getElementById("blocknav");
 	var sliders = clipliders.getElementsByTagName('webaudio-slider');
@@ -768,7 +768,7 @@ function loadplayground() {
 	changePan();
 	changeEQ();
 	pRecorder();
-	clipslider();
+	loopslider();
 	play101273();
 	midiSwitches();
 }

@@ -44,7 +44,6 @@ function setCurrentPreset(preset) {
 
 	try {
 		instrument.set(JSON.parse(preset));
-		//instrument.connect(Tone.context.destination);
 	} catch(e){
 		// indicate the error
 		codemirror.getWrapperElement().classList.add("Error");
@@ -59,7 +58,7 @@ function setupEvents(){
 	//var listenButton = document.querySelector("button");
 	var listenButton = document.getElementById("update");
 	listenButton.addEventListener("click", function(e){
-		//get the apply the preset
+		//get and apply the preset
 		setCurrentPreset(codemirror.getValue());
 	}, true);
 }
@@ -68,18 +67,14 @@ function setupEvents(){
  *  Tone.js
  */
 var instrument;
-//var Reverb = new Tone.Reverb("4n", 0.1).toMaster();	
-
 
 function makeInstrument(inst){
 	if (instrument){
 		instrument.dispose();
 	}
 	instrument =  new Tone[inst]().toMaster();
-	//instrument.connect(Tone.context.destination);
 
 }
-
 //bind the interface
 //document.querySelector("tone-meter").bind(instrument);
 
