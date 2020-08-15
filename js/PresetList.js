@@ -39,7 +39,8 @@ var PresetList = {
 		"Steelpan.json",
 		"SuperSaw.json",
 		"Synth.json",
-		"TreeTrunk.json"
+		"TreeTrunk.json",
+		"DeepWind.json"
 	],
 	"PolySynth": [
 		"PolySynth.json"

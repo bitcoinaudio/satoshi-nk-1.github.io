@@ -178,7 +178,7 @@ function getstring(stringtype, merkleroot, hash) {
 			//var info = `Merkle Root: ${block.merkle_root}<br>
 			//			Hash: ${hash}<br>`;
 			//$(".blockinfo").html(info);
-
+			document.getElementById('consoleTB').value = "TimeStamp: " + ts;
 			switch (stringtype) {
 
 
@@ -514,6 +514,7 @@ function playselected() {
 
 	}
 	cliptb.blur();
+	document.getElementById("body").focus();
 	playseq();
 }
 var speedvariable = 32;
@@ -552,9 +553,11 @@ function playstr(string) {
 	
 	selectslice();
 	var s = slicestrg();
+	//var n = nextslice();
+	var now = Tone.now();
 	nextslice();
-	instrument.triggerAttackRelease(s, notation);
-
+	instrument.triggerAttack(s, now);
+	instrument.triggerRelease(now + 1.5);
 	return string;
 }
 function changeKnobs() {

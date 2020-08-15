@@ -383,7 +383,7 @@
 
             <tone-meter level color="#ffd800"></tone-meter>
             <tone-play-toggle></tone-play-toggle>
-            <tone-player collapsed></tone-player>
+            <tone-player ></tone-player>
 
         </div>
 
@@ -419,10 +419,15 @@
                 <div class="col-sm-6 text-warning"><strong>Experimental:</strong> cancellation on/off may work on Chrome only.</div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Test tone</label>
+                <label class="col-sm-3 control-label">Record Level</label>
                 <div class="col-sm-3"></div>
                 <div class="col-sm-3">
                     <input id="record-level" type="range" min="0" max="100" value="0">
+                </div>
+                <label class="col-sm-3 control-label">Instrument Level</label>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <input id="instrument-level" type="range" min="0" max="100" value="0">
                 </div>
             </div>
             <br>

@@ -56,7 +56,7 @@ function pRecorder () {
 
 	$recordLevel.attr('disabled', false);
 
-	$recordLevel[0].valueAsNumber = 10;
+	$recordLevel[0].valueAsNumber = 4;
 
 	$timeLimit.attr('disabled', false);
 
@@ -89,14 +89,12 @@ function pRecorder () {
 	
 	redcordLevel.connect(mixer);
 	audioInLevel.connect(mixer);
+	
 	instrument.connect(mixer);
 
-	instrument.connect(Tone.context.destination);
-
-
-
-	//instrument.connect(redcordLevel);
-	//mixer.connect(Tone.context.destination);
+	//instrument.chain(mixer);
+	
+	
 
 	audioRecorder = new WebAudioRecorder(mixer, {
 		workerDir: 'js/',

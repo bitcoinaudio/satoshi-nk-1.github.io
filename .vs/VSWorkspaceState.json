@@ -1,8 +1,15 @@
 {
   "ExpandedNodes": [
     "",
+    "\\css",
+    "\\instrument",
+    "\\instrument\\AMSynth",
+    "\\instrument\\FMSynth",
+    "\\instrument\\MembraneSynth",
+    "\\instrument\\Synth",
     "\\js",
-    "\\Sound Money"
+    "\\Sound Money",
+    "\\style"
   ],
   "SelectedNode": "\\js\\playground-midi.js",
   "PreviewInSolutionExplorer": false
