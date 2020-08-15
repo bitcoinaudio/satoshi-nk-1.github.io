@@ -73,7 +73,7 @@ function makeInstrument(inst){
 		instrument.dispose();
 	}
 	instrument =  new Tone[inst]().toMaster();
-
+	
 }
 //bind the interface
 //document.querySelector("tone-meter").bind(instrument);
@@ -132,7 +132,8 @@ function makePresetDropDown(instrument){
 function dropDownEvents(){
 	var instruments = document.querySelector("#Names select");
 
-	instruments.addEventListener("input", function(e){
+	instruments.addEventListener("input", function (e) {
+		// recording breaks here
 		makeInstrument(instruments.value);
 		makePresetDropDown(instruments.value);
 
@@ -140,7 +141,8 @@ function dropDownEvents(){
 
 	var presets = document.querySelector("#Preset select");
 
-	presets.addEventListener("input", function(e){
+	presets.addEventListener("input", function (e) {
+		// recording breaks here
 		makeInstrument(instruments.value);
 		loadPreset(instruments.value, presets.value);
 
